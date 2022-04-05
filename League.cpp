@@ -3,8 +3,6 @@
 #include <iostream>
 #include <string>
 
-Bank personal("Personal", 'p', 0);
-Bank club("Club", 'c', 0);
 
 League::League() {
 	leagueName = "";
@@ -16,17 +14,17 @@ League::League() {
 	winDepositPct = 0;
 	wD = 0.0;
 	perWinDeposit = 0;
-	perStreakDeposit = 0;
+	perStreakDeposit = 0.0;
 
 	matchInflationPct = 0.0;
 	inflationPctAdded = 0.0;
-	iPA = 0.0;
+	pA = 0.0;
 	postMatchWithdraw = 0;
 	streakClubWithdraw = 0;
 }
 
 
-League::League(std::string n, int e, int m, int w, float lP, float iP) {
+League::League(std::string n, int e, int m, int w, float lP, float iP, float iPA) {
 	leagueName = n;
 	entryFee = e;
 	numberOfMatches = m;
@@ -35,17 +33,17 @@ League::League(std::string n, int e, int m, int w, float lP, float iP) {
 	leagueWinPct = lP;
 	winDepositPct = lP / w;
 	wD = winDepositPct;
-	perWinDeposit = (wD / 100) * personal.get_principal();
-	perStreakDeposit = (wD / 100) * (personal.get_principal() + club.get_balance());
+	perWinDeposit; 
+	perStreakDeposit;
 
 	matchInflationPct = iP;
-	inflationPctAdded = 0;
-	iPA;
-	postMatchWithdraw = ((iP + iPA) / 100) * personal.get_balance();
-	streakClubWithdraw = ((iP + iPA) / 100) * club.get_balance();
+	startInflation = iP;
+	inflationPctAdded = iPA;
+	pA = iPA;
+	postMatchWithdraw;
+	streakClubWithdraw;
 
 }
-
 
 void League::set_name(std::string n) {
 	leagueName = n;
@@ -108,90 +106,84 @@ void League::set_winPct(float lP, int w) {
 }
 
 float League::get_winPct() {
-	return winDepositPct;
+	return rnd(winDepositPct);
 
 }
 
-
-void League::set_winDeposit(int wD) {
-	perWinDeposit = (wD / 100) * personal.get_principal();
-
-}
-
-int League::get_winDeposit() {
-	return perWinDeposit;
-
-}
-
-
-void League::set_streakDeposit(int wD) {
-	perStreakDeposit = (wD / 100) * (personal.get_principal() + club.get_balance());
-
-}
-
-int League::get_streakDeposit() {
-	return perStreakDeposit;
-
-}
-
-
-void League::set_inflationPctAdded(float iP, int losses) 
+void League::set_winDeposit(Bank arr[], int p) 
 {
-	//waiting for true losses variable
-	losses = 0;
+	
+		perWinDeposit = (wD / 100.0) * arr[p].get_principal();
+	
+}
 
-	//for each loss, the inflation percent on personal increases by 20%
-		iPA = (iP * 0.2) * losses;
-		inflationPctAdded = iPA;
+float League::get_winDeposit() {
+	return rnd(perWinDeposit);
+
+}
+
+
+void League::set_streakDeposit(Bank arr[], int p, int c) {
+	perStreakDeposit = (wD / 100.0) * (arr[p].get_principal() + arr[c].get_balance());
+
+}
+
+float League::get_streakDeposit() {
+	return rnd(perStreakDeposit);
+
+}
+
+
+void League::set_inflationPctAdded() 
+{
+	//for each loss, the inflation percent on personal increases by league decided percent
+		inflationPctAdded = (matchInflationPct * (pA / 100.0));
+
 }
 
 float League::get_inflationPctAdded() {
-	return inflationPctAdded;
+	return rnd(inflationPctAdded);
 
 }
 
 
-void League::set_matchInflationPct(float iP, float iPA) {
-	iP += iPA;
-	matchInflationPct = iP;
+void League::set_matchInflationPct() {
+	matchInflationPct += inflationPctAdded;
 
 }
 
 float League::get_matchInflationPct() {
-	return matchInflationPct;
+	return rnd(matchInflationPct);
 
 }
 
 
-void League::set_postMatchWithdraw(float iP)
+void League::set_postMatchWithdraw(Bank arr[],int p)
 {
-	postMatchWithdraw = (iP / 100) * personal.get_balance();
+	postMatchWithdraw = (matchInflationPct / 100) * arr[p].get_balance();
 
 }
 
-int League::get_postMatchWithdraw() {
-	return postMatchWithdraw;
+float League::get_postMatchWithdraw() {
+	return rnd(postMatchWithdraw);
 
 }
 
 
-void League::set_streakClubWithdraw(float iP, bool loseStreak)
+void League::set_streakClubWithdraw(bool loseStreak, Bank arr[], int c)
 {
-	//waiting for true loseStreak variable
-	loseStreak = false;
-
 	if (loseStreak == true) {
-		streakClubWithdraw = (iP / 100) * club.get_balance();
+		streakClubWithdraw = (matchInflationPct / 100.0) * arr[c].get_balance();
 
 	}
 	else {
 		streakClubWithdraw = 0;
 	}
-	
+
 }
 
-int League::get_streakClubWithdraw() {
-	return postMatchWithdraw;
+float League::get_streakClubWithdraw() {
+	return rnd(streakClubWithdraw);
 
 }
 

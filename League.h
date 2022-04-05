@@ -1,5 +1,12 @@
 #pragma once
 #include <string>
+class Bank;
+
+inline float rnd(float n) {
+	float value = (int)(n * 100 + 0.5001);
+	return (float)value / 100;
+
+}
 
 class League
 {
@@ -11,21 +18,20 @@ private:
 
 	float leagueWinPct;
 	float winDepositPct, wD;
-	int perWinDeposit;
-	int perStreakDeposit;
+	float perWinDeposit;
+	float perStreakDeposit;
 
 	float matchInflationPct;
-	float inflationPctAdded, iPA;
+	float inflationPctAdded, pA, startInflation;
 
-	int postMatchWithdraw;
-	int streakClubWithdraw;
+	float postMatchWithdraw;
+	float streakClubWithdraw;
 
 public:
 	League();
 
-	//e = entryFee ; m = numMatches ; w = winsNeeded ; lP = leagueWinPct ; iP = inflationPct
-	League(std::string n, int e, int m, int w, float lP, float iP);
-
+	
+	League(std::string name, int entryFee, int numMatches, int winsNeeded, float leagueWinPct, float inflationPct, float inflationPctAdded);
 
 	void set_name(std::string n);
 
@@ -61,39 +67,39 @@ public:
 
 
 	//actual value paid after each win in league
-	void set_winDeposit(int wD);
+	void set_winDeposit(Bank arr[], int p);
 
-	int get_winDeposit();
+	float get_winDeposit();
 
 
 	//actual value paid after each win during win streak
-	void set_streakDeposit(int wD);
+	void set_streakDeposit(Bank arr[], int p, int c);
 
-	int get_streakDeposit();
+	float get_streakDeposit();
 
 
-	//percent of inflation that is added based on number of losses
-	void set_inflationPctAdded(float iP, int losses);
+	//percent of inflation that is added per loss
+	void set_inflationPctAdded();
 
 	float get_inflationPctAdded();
 
 
 	//percent of personal account lost after each match
-	void set_matchInflationPct(float iP, float iPA);
+	void set_matchInflationPct();
 
 	float get_matchInflationPct();
 
 
 	//actual value of money withdrawn from personal account after each match
-	void set_postMatchWithdraw(float iP);
+	void set_postMatchWithdraw(Bank arr[], int p);
 
-	int get_postMatchWithdraw();
+	float get_postMatchWithdraw();
 
 
 	//actual value of money withdrawn from club account during lose streaks
-	void set_streakClubWithdraw(float iP, bool loseStreak);
+	void set_streakClubWithdraw(bool loseStreak, Bank arr[], int c);
 
-	int get_streakClubWithdraw();
+	float get_streakClubWithdraw();
 
 };
 

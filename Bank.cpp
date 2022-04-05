@@ -6,16 +6,14 @@
 Bank::Bank() {
 	accountName = "";
 	accountType = ' ';
-	balance = 0;
-	principal = 0;
+	balance = 0.0;
+	principal = 0.0;
 	transType = ' ';
 	transAmount = 0;
-	//make principal and withdraw/deposit amounts as paramaters so i am able to see these values to the dot operators of the leagues.
-	//probably make transaction type paramter for use in the if statement of depositing or withdrawing. inside of balance method.
 
 }
 
-Bank::Bank(std::string n, char t, int b) {
+Bank::Bank(std::string n, char t, float b) {
 	accountName = n;
 	accountType = t;
 	balance = b;
@@ -51,8 +49,9 @@ void Bank::set_balance(int b) {
 
 }
 
-int Bank::get_balance() {
-	return balance;
+float Bank::get_balance() {
+	
+	return rnd(balance);
 
 }
 
@@ -73,28 +72,24 @@ void Bank::set_balance(char dw, int a)
 }
 
 
-void Bank::set_balance(bool mR, bool wS, bool lS, int wD, int sD, int mW, int sW) 
-{
-	//waiting for true matchWon, winStreak, and loseStreak variables
-	bool matchWon = true;
-	bool winStreak = true;
-	bool loseStreak = false;
+void Bank::set_balance(League arr[], int l, bool matchWon, bool winStreak, bool loseStreak)
+{	
 
 	if (accountType == 'p') 
 	{
-		balance -= mW;
+		balance -= arr[l].get_postMatchWithdraw();
 	}
 
 	if (accountType == 'c') 
 	{
 		if (matchWon == true && winStreak == false) {
-			balance += wD;
+			balance += arr[l].get_winDeposit();
 		}
 		if (matchWon == true && winStreak == true) {
-			balance += sD;
+			balance += arr[l].get_streakDeposit();
 		}
 		if (matchWon == false && loseStreak == true) {
-			balance -= sW;
+			balance -= arr[l].get_streakClubWithdraw();
 		}
 	}
 
@@ -103,7 +98,6 @@ void Bank::set_balance(bool mR, bool wS, bool lS, int wD, int sD, int mW, int sW
 
 void Bank::set_principal(bool exitedShop) 
 {
-	//waiting for true exitedShop variable
 	exitedShop = true;
 
 	if (exitedShop == true) {
@@ -112,7 +106,7 @@ void Bank::set_principal(bool exitedShop)
 	
 }
 
-int Bank::get_principal() {
+float Bank::get_principal() {
 	return principal;
 
 }
