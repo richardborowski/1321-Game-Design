@@ -8,7 +8,8 @@ class Print
 private:
 	char printType;
 	std::string subType;
-
+	bool leagueWon;
+	char press;
 
 public:
 	Print();
@@ -16,11 +17,20 @@ public:
 	//for creating objects of repeated text
 	Print(char type);
 
-	//for printint out needed information to user
-	void print();
+	//for printing out needed information to user
+	void print(Print opt[], int m, int l, int h);
 	
-	//for sub types of repeated info such as: help(rules), tutorial(bank), league(info), league(postMatch), etc.
-	void print(std::string subType, League lev[], int l, Bank acc[], int p, int c);
+	//menu or continue
+	void enter(Print opt[]);
+
+	//help rules
+	void print(Print opt[], std::string subType);
+
+	//for sub types of repeated info such as: help(rules), tutorial(bank), league(info), etc.
+	void print(Print opt[], std::string subType, League lev[], int l, Bank acc[], int p, int c);
+
+	//post match
+	void print(Print opt[], std::string subType, League lev[], int l, Bank acc[], int p, int c, int wins, int matchesPlayed, bool matchWon, bool winStreak, bool loseStreak);
 
 
 
