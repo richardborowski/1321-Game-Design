@@ -233,7 +233,7 @@ void Print::print(Print opt[], std::string subType, League lev[], int l, Bank ac
 }
 
 
-void Print::print(Print opt[], std::string subType, League lev[], int l, Bank acc[], int p, int c, int wins, int matchesPlayed, bool matchWon, bool winStreak, bool loseStreak)
+void Print::print(Print opt[], std::string subType, League lev[], int l, Bank acc[], int p, int c, bool matchWon, bool winStreak, bool loseStreak, int matchesPlayed, int wins)
 {
 
 	//league post match
