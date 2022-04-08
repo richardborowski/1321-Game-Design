@@ -7,7 +7,6 @@
 #include "Print.h"
 using namespace std;
 
-
 int main()
 {
     //tracker- matches, wins, league number
@@ -31,7 +30,7 @@ int main()
 
     bool result[4] = { matchWon, winStreak, loseStreak, leagueWon};
 
-    help.print(option, "rules");
+    //help.print(option, "rules");
 
 
     //start of the fight club game
@@ -41,16 +40,16 @@ int main()
     Bank account[2] = { personal, club };
 
     //leagues
-    League starter("Starter League", 50, 8, 3, 30, 2, 20);
-    League amateur("Amateur League", 100, 8, 4, 40, 10, 30);
-    League pro("Pro League", 150, 8, 5, 50, 20, 45);
-    League champion("Champion's League", 200, 8, 6, 60, 30, 65);
-    League legend("Legend's League", 250, 8, 7, 70, 50, 100);
+    League starter("Starter League", 10, 8, 3, 50, 1, 10);
+    League amateur("Amateur League", 35, 8, 4, 75, 5, 20);
+    League pro("Pro League", 50, 8, 5, 100, 20, 45);
+    League champion("Champion's League", 100, 8, 6, 150, 30, 65);
+    League legend("Legend's League", 150, 8, 7, 200, 50, 100);
     League level[5] = { starter, amateur, pro, champion, legend };
 
     //demo starter league
     
-    //do {
+    do {
     league.print(option, "intro", level, account, result, tracker);
     //upgrades, store, and shop will be here. 
 
@@ -102,7 +101,7 @@ int main()
     //if bool leagueEnd = true
     league.print(option, "end", level, account, result, tracker);
 
-    // } while (res[3] == false);
+    } while (tracker[2] != 5);
 }
 
 

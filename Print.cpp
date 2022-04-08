@@ -190,15 +190,17 @@ void Print::print(Print opt[], std::string subType, League lev[], Bank acc[], bo
 	//league intro
 	if (printType == 'l' && subType == "intro")
 	{
-		//leagueWon = false
 		res[3] = false;
+		track[0] = 0;
+		track[1] = 0;
 
 		std::cout << "Welcome to the " << lev[l].get_name() << "!\n";
 		std::cout << "The entry fee for this league is $" << lev[l].get_entryFee() << std::endl;
 		std::cout << "You currently have $" << acc[0].get_balance() << " available in your personal account\n";
-		
+
 		//ends game if can't pay entry fee
 		if (lev[l].get_entryFee() > acc[0].get_balance()) {
+			std::cin.ignore();
 			std::cout << "You do not have enough to pay the entry fee...\n";
 			std::cout << "GAME OVER\n";
 			exit(0);
@@ -240,12 +242,22 @@ void Print::print(Print opt[], std::string subType, League lev[], Bank acc[], bo
 		}
 		else if (res[3] == true) {
 			std::cout << "You beat the " << lev[l].get_name() << " and are now moving on to the next league." << std::endl << std::endl;
+			
+			//move to next league or end game
+			if (track[2] != 5) {
+				track[2] += 1;
+			}
+			else {
+				std::cout << "You have beat the game, congrats!\n";
+				exit(0);
+			}
 		}
 
 		std::cout << "All money in your club account will now be transferred into your personal account:\n";
 
 		acc[0].set_balance('d', acc[1].get_balance());
 		std::cout << "New Personal Balance: $" << acc[0].get_balance() << std::endl;
+		acc[1].set_balance('w', acc[1].get_balance());
 
 		opt[0].enter(opt);
 	}
@@ -273,15 +285,6 @@ void Print::print(Print opt[], std::string subType, League lev[], Bank acc[], bo
 
 			acc[1].set_balance(lev, track, res);
 			std::cout << "New Club Balance: $" << acc[1].get_balance() << std::endl;
-
-			//move to next league or end game
-			if (track[2] != 5) {
-				track[2] += 1;
-			}
-			else {
-				std::cout << "You have beat the game, congrats!\n";
-				exit(0);
-			}
 
 			opt[0].enter(opt);
 		}
@@ -385,7 +388,7 @@ void Print::print(Print opt[], std::string subType, League lev[], Bank acc[], bo
 		std::cout << std::endl;
 
 		std::cout << lev[l].get_matchInflationPct() << "% of your personal account has been withdrawn" << std::endl;
-		std::cout << lev[l].get_matchInflationPct() << "% of your club account has been withdrawn" << std::endl;
+		std::cout << lev[l].get_matchInflationPct() << "% of your club account has been withdrawn" << std::endl << std::endl;
 
 		acc[0].set_balance(lev, track, res);
 		std::cout << "New Personal Balance: $" << acc[0].get_balance() << std::endl;
