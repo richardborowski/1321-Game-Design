@@ -13,23 +13,27 @@ Print::Print() {
 
 }
 
-Print::Print(char type) {
+Print::Print(char type, int track[]) {
 	printType = type;
-	leagueWon = false;
+	l = track[2];
+	press = ' ';
 }
 
-
-//m = menu
-//l = league
+//variable = print type = # in array
+//m = menu = 0
+//l = league = 1
+//h = help = 2
 //e = exit
-//h = help
 
-//strictly for printing out text 
-void Print::print(Print opt[], int m, int l, int h)
+//for printing the main menu 
+void Print::print(Print opt[])
 {
-	//menu
+	//main menu
 	int menuOption, helpOption;
+	menuOption = 0;
+	helpOption = 0;
 	char exitOption;
+	exitOption = ' ';
 	
 	do {
 		if (printType = 'm')
@@ -45,13 +49,13 @@ void Print::print(Print opt[], int m, int l, int h)
 				std::cout << std::endl;
 			} while (menuOption != 1 && menuOption != 2 && menuOption != 3);
 
-			//help
+			//help menu
 			if (menuOption == 1)
 			{
 				std::cout << "[Help]\n";
 				std::cout << "What do you need help with?\n";
-				std::cout << "1) Rules\n"; //help.print(rules)
-				std::cout << "2) Fighting\n"; //help.print(fighting);
+				std::cout << "1) Rules\n";
+				std::cout << "2) Fighting\n"; 
 				do {
 					std::cout << "Choose an option: ";
 					std::cin >> helpOption;
@@ -60,23 +64,23 @@ void Print::print(Print opt[], int m, int l, int h)
 
 				switch (helpOption) {
 				case 1:
-					opt[h].print(opt, "rules");
+					opt[2].print(opt, "rules");
 					break;
 				case 2:
-					//fighting help
+					//fighting tutorial will be here
 					std::cout << "fighting help";
 					break;
 				}
 			}
 
-			//exit
+			//exit game
 			else if (menuOption == 2)
 			{
 				std::cout << "[Exit Game]\n";
 				do {
 					std::cout << "Are you sure you want to exit? (Y/N)\n";
 					std::cin >> exitOption;
-				} while (exitOption != 'Y' && menuOption != 'N');
+				} while (exitOption != 'Y' && exitOption != 'N');
 
 				switch (exitOption) {
 				case 'Y':
@@ -90,15 +94,15 @@ void Print::print(Print opt[], int m, int l, int h)
 
 			}
 
-			//return
+			//return to game
 			else if (menuOption == 3) {
-				std::cin.ignore();
 			}
 		}
 	} while (menuOption != 3);
 }
 
 
+//enter to continue or main menu
 void Print::enter(Print opt[])
 {
 	do {
@@ -111,11 +115,13 @@ void Print::enter(Print opt[])
 		}
 		else if (press == 'm') {
 			std::cout << std::endl;
-			opt[0].print(opt, 0, 1, 2);
+			opt[0].print(opt);
 		}
 	} while (press != '\n' && press != 'm');
 }
 
+
+//for printing rules
 void Print::print(Print opt[], std::string subType)
 {
 	if (printType == 'h' && subType == "rules") {
@@ -176,34 +182,39 @@ void Print::print(Print opt[], std::string subType)
 }
 
 
-void Print::print(Print opt[], std::string subType, League lev[], int l, Bank acc[], int p, int c)
+//for printing league information
+void Print::print(Print opt[], std::string subType, League lev[], Bank acc[], bool res[], int track[])
 {
+	l = track[2];
+
 	//league intro
 	if (printType == 'l' && subType == "intro")
 	{
+		//leagueWon = false
+		res[3] = false;
 
 		std::cout << "Welcome to the " << lev[l].get_name() << "!\n";
 		std::cout << "The entry fee for this league is $" << lev[l].get_entryFee() << std::endl;
-		std::cout << "You currently have $" << acc[p].get_balance() << " available in your personal account\n";
+		std::cout << "You currently have $" << acc[0].get_balance() << " available in your personal account\n";
 		std::cout << std::endl << "Press enter to pay the entry fee\n";
 		std::cout << "-------------------------------------------------------------------------------------------\n";
 		std::cin.ignore();
 
-		acc[p].set_balance('w', lev[l].get_entryFee());
-		std::cout << "New Personal Balance: $" << acc[p].get_balance() << std::endl;
+		acc[0].set_balance('w', lev[l].get_entryFee());
+		std::cout << "New Personal Balance: $" << acc[0].get_balance() << std::endl << std::endl;
 	}
 
 	//league info
 	if (printType == 'l' && subType == "info")
 	{
-		acc[p].set_principal(true);
+		acc[0].set_principal();
 		std::cout << "Here is the informaton for the " << lev[l].get_name() << ":\n";
 		std::cout << "Matches: " << lev[l].get_numMatches() << std::endl;
 		std::cout << "Wins Needed: " << lev[l].get_winsNeeded() << std::endl << std::endl;
 
 		std::cout << "League Win Percentage Reward: " << lev[l].get_leaguePct() << "%" << std::endl;
 		std::cout << "Percent Paid Per Win: " << lev[l].get_winPct() << "%" << std::endl;
-		std::cout << "Your personal account's principal: $" << acc[p].get_principal() << std::endl;
+		std::cout << "Your personal account's principal: $" << acc[0].get_principal() << std::endl;
 		std::cout << "Percent personal balance lost after each match to inflation: " << lev[l].get_matchInflationPct() << "%" << std::endl;
 		std::cout << "Percent-Increase on inflation per loss: " << lev[l].get_inflationPctAdded() << "%" << std::endl;
 
@@ -212,112 +223,117 @@ void Print::print(Print opt[], std::string subType, League lev[], int l, Bank ac
 	}
 
 	//league end
-	if (printType == 'l' && subType == "end") 
+	if (printType == 'l' && subType == "end")
 	{
 		std::cout << "The " << lev[l].get_name() << " has concluded.\n";
 
-		if (leagueWon == false) {
+		if (res[3] == false) {
 			std::cout << "You did not beat the league, therefore you will have to try the " << lev[l].get_name() << " again." << std::endl;
 		}
-		else if (leagueWon == true) {
+		else if (res[3] == true) {
 			std::cout << "You beat the " << lev[l].get_name() << " and are now moving on to the next league." << std::endl << std::endl;
 		}
 
 		std::cout << "All money in your club account will now be transferred into your personal account:\n";
 
-		acc[p].set_balance('d', acc[c].get_balance());
-		std::cout << "New Personal Balance: $" << acc[p].get_balance() << std::endl;
+		acc[0].set_balance('d', acc[1].get_balance());
+		std::cout << "New Personal Balance: $" << acc[0].get_balance() << std::endl;
 
 		opt[0].enter(opt);
 	}
-}
 
-
-void Print::print(Print opt[], std::string subType, League lev[], int l, Bank acc[], int p, int c, bool matchWon, bool winStreak, bool loseStreak, int matchesPlayed, int wins)
-{
 
 	//league post match
 	if (printType == 'l' && subType == "postMatch")
 	{
 		//won league
-		if (wins == lev[l].get_winsNeeded())
+		if (track[1] == lev[l].get_winsNeeded())
 		{
-			leagueWon = true;
+			res[3] = true;
 			std::cout << "Congratulations! You have won " << lev[l].get_winsNeeded() << " matches and beat the " << lev[l].get_name() << "!" << std::endl;
 
-			lev[l].set_winDeposit(acc, p);
-			lev[l].set_streakDeposit(acc, p, c);
-			lev[l].set_postMatchWithdraw(acc, p);
-			lev[l].set_streakClubWithdraw(loseStreak, acc, c);
+			lev[l].set_winDeposit(acc);
+			lev[l].set_streakDeposit(acc);
+			lev[l].set_postMatchWithdraw(acc);
+			lev[l].set_streakClubWithdraw(acc, res);
 
 			std::cout << lev[l].get_matchInflationPct() << "% of your personal account has been withdrawn" << std::endl;
 			std::cout << "$" << lev[l].get_winDeposit() << " has been deposited into your club account" << std::endl << std::endl;
 
-			acc[p].set_balance(lev, l, matchWon, winStreak, loseStreak);
-			std::cout << "New Personal Balance: $" << acc[p].get_balance() << std::endl;
+			acc[0].set_balance(lev, track, res);
+			std::cout << "New Personal Balance: $" << acc[0].get_balance() << std::endl;
 
-			acc[c].set_balance(lev, l, matchWon, winStreak, loseStreak);
-			std::cout << "New Club Balance: $" << acc[c].get_balance() << std::endl;
+			acc[1].set_balance(lev, track, res);
+			std::cout << "New Club Balance: $" << acc[1].get_balance() << std::endl;
+
+			//move to next league or end game
+			if (track[2] != 5) {
+				track[2] += 1;
+			}
+			else {
+				std::cout << "You have beat the game, congrats!\n";
+				exit(0);
+			}
 
 			opt[0].enter(opt);
 		}
 
-		//won no streak
-		else if (matchWon == true && winStreak == false)
+		//won match with no streak
+		else if (res[0] == true && res[1] == false)
 		{
 			std::cout << "Congrats on the win!" << std::endl;
-			std::cout << "You now have " << wins << "/" << lev[l].get_winsNeeded() << " wins needed to beat the league." << std::endl;
-			std::cout << "There are " << lev[l].get_numMatches() - matchesPlayed << " matches remaining." << std::endl << std::endl;
+			std::cout << "You now have " << track[1] << "/" << lev[l].get_winsNeeded() << " wins needed to beat the league." << std::endl;
+			std::cout << "There are " << lev[l].get_numMatches() - track[0] << " matches remaining." << std::endl << std::endl;
 
-			lev[l].set_winDeposit(acc, p);
-			lev[l].set_streakDeposit(acc, p, c);
-			lev[l].set_postMatchWithdraw(acc, p);
-			lev[l].set_streakClubWithdraw(loseStreak, acc, c);
+			lev[l].set_winDeposit(acc);
+			lev[l].set_streakDeposit(acc);
+			lev[l].set_postMatchWithdraw(acc);
+			lev[l].set_streakClubWithdraw(acc, res);
 
 			std::cout << lev[l].get_matchInflationPct() << "% of your personal account has been withdrawn due to inflation." << std::endl;
 			std::cout << "$" << lev[l].get_winDeposit() << " has been deposited into your club account for the win." << std::endl << std::endl;
 
-			acc[p].set_balance(lev, l, matchWon, winStreak, loseStreak);
-			std::cout << "New Personal Balance: $" << fix(acc[p].get_balance()) << std::endl;
+			acc[0].set_balance(lev, track, res);
+			std::cout << "New Personal Balance: $" << fix(acc[0].get_balance()) << std::endl;
 
-			acc[c].set_balance(lev, l, matchWon, winStreak, loseStreak);
-			std::cout << "New Club Balance: $" << fix(acc[c].get_balance()) << std::endl;
+			acc[1].set_balance(lev, track, res);
+			std::cout << "New Club Balance: $" << fix(acc[1].get_balance()) << std::endl;
 
 			opt[0].enter(opt);
 		}
 
-		//won with streak
-		else if (matchWon == true && winStreak == true)
+		//won match with streak
+		else if (res[0] == true && res[1] == true)
 		{
 			std::cout << "Congrats on the win!" << std::endl;
-			std::cout << "You now have " << wins << "/" << lev[l].get_winsNeeded() << " wins needed to beat the league." << std::endl;
-			std::cout << "There are " << lev[l].get_numMatches() - matchesPlayed << " matches remaining." << std::endl << std::endl;
+			std::cout << "You now have " << track[1] << "/" << lev[l].get_winsNeeded() << " wins needed to beat the league." << std::endl;
+			std::cout << "There are " << lev[l].get_numMatches() - track[0] << " matches remaining." << std::endl << std::endl;
 			std::cout << "You're on a win streak!\n";
 			std::cout << "Your club balance will be added to your personal account's principal for the " << lev[l].get_winPct() << "% win deposit\n";
 
-			lev[l].set_winDeposit(acc, p);
-			lev[l].set_streakDeposit(acc, p, c);
-			lev[l].set_postMatchWithdraw(acc, p);
-			lev[l].set_streakClubWithdraw(loseStreak, acc, c);
+			lev[l].set_winDeposit(acc);
+			lev[l].set_streakDeposit(acc);
+			lev[l].set_postMatchWithdraw(acc);
+			lev[l].set_streakClubWithdraw(acc, res);
 
 			std::cout << std::endl << lev[l].get_matchInflationPct() << "% of your personal account has been withdrawn" << std::endl;
 			std::cout << "$" << lev[l].get_streakDeposit() << " has been deposited into your club account" << std::endl << std::endl;
 
-			acc[p].set_balance(lev, l, matchWon, winStreak, loseStreak);
-			std::cout << "New Personal Balance: $" << acc[p].get_balance() << std::endl;
+			acc[0].set_balance(lev, track, res);
+			std::cout << "New Personal Balance: $" << acc[0].get_balance() << std::endl;
 
-			acc[c].set_balance(lev, l, matchWon, winStreak, loseStreak);
-			std::cout << "New Club Balance: $" << acc[c].get_balance() << std::endl;
+			acc[1].set_balance(lev, track, res);
+			std::cout << "New Club Balance: $" << acc[1].get_balance() << std::endl;
 
 			opt[0].enter(opt);
 		}
 
-		//lose no streak
-		else if (matchWon == false && loseStreak == false)
+		//lose match no streak
+		else if (res[0] == false && res[2] == false)
 		{
 			std::cout << "You lost the match! Bummer..." << std::endl;
-			std::cout << "You have " << wins << "/" << lev[l].get_winsNeeded() << " wins needed to beat the league." << std::endl;
-			std::cout << "There are " << lev[l].get_numMatches() - matchesPlayed << " matches remaining." << std::endl << std::endl;
+			std::cout << "You have " << track[1] << "/" << lev[l].get_winsNeeded() << " wins needed to beat the league." << std::endl;
+			std::cout << "There are " << lev[l].get_numMatches() - track[0] << " matches remaining." << std::endl << std::endl;
 
 			lev[l].set_inflationPctAdded();
 			lev[l].set_matchInflationPct();
@@ -326,35 +342,35 @@ void Print::print(Print opt[], std::string subType, League lev[], int l, Bank ac
 
 			std::cout << lev[l].get_matchInflationPct() << "% of your personal account has been withdrawn" << std::endl << std::endl;
 
-			lev[l].set_winDeposit(acc, p);
-			lev[l].set_streakDeposit(acc, p, c);
-			lev[l].set_postMatchWithdraw(acc, p);
-			lev[l].set_streakClubWithdraw(loseStreak, acc, c);
+			lev[l].set_winDeposit(acc);
+			lev[l].set_streakDeposit(acc);
+			lev[l].set_postMatchWithdraw(acc);
+			lev[l].set_streakClubWithdraw(acc, res);
 
-			acc[p].set_balance(lev, l, matchWon, winStreak, loseStreak);
-			std::cout << "New Personal Balance: $" << acc[p].get_balance() << std::endl;
+			acc[0].set_balance(lev, track, res);
+			std::cout << "New Personal Balance: $" << acc[0].get_balance() << std::endl;
 
-			acc[c].set_balance(lev, l, matchWon, winStreak, loseStreak);
-			std::cout << "New Club Balance: $" << acc[c].get_balance() << std::endl;
+			acc[1].set_balance(lev, track, res);
+			std::cout << "New Club Balance: $" << acc[1].get_balance() << std::endl;
 
 			opt[0].enter(opt);
 		}
 
 
-		//lose with streak
-		else if (matchWon == false && loseStreak == true)
+		//lose match with streak
+		else if (res[0] == false && res[2] == true)
 		{
 		std::cout << "You lost the match! Bummer..." << std::endl;
-		std::cout << "You have " << wins << "/" << lev[l].get_winsNeeded() << " wins needed to beat the league." << std::endl;
-		std::cout << "There are " << lev[l].get_numMatches() - matchesPlayed << " matches remaining." << std::endl << std::endl;
+		std::cout << "You have " << track[1] << "/" << lev[l].get_winsNeeded() << " wins needed to beat the league." << std::endl;
+		std::cout << "There are " << lev[l].get_numMatches() - track[2] << " matches remaining." << std::endl << std::endl;
 
 		lev[l].set_inflationPctAdded();
 		lev[l].set_matchInflationPct();
 
-		lev[l].set_winDeposit(acc, p);
-		lev[l].set_streakDeposit(acc, p, c);
-		lev[l].set_postMatchWithdraw(acc, p);
-		lev[l].set_streakClubWithdraw(loseStreak, acc, c);
+		lev[l].set_winDeposit(acc);
+		lev[l].set_streakDeposit(acc);
+		lev[l].set_postMatchWithdraw(acc);
+		lev[l].set_streakClubWithdraw(acc, res);
 
 		std::cout << lev[l].get_inflationPctAdded() << "% has been added to the inflation on your personal account and is now " << lev[l].get_matchInflationPct() << "%" << std::endl;
 		std::cout << "This inflation will also be applied to your club account due to the losing streak" << std::endl;
@@ -363,11 +379,11 @@ void Print::print(Print opt[], std::string subType, League lev[], int l, Bank ac
 		std::cout << lev[l].get_matchInflationPct() << "% of your personal account has been withdrawn" << std::endl;
 		std::cout << lev[l].get_matchInflationPct() << "% of your club account has been withdrawn" << std::endl;
 
-		acc[p].set_balance(lev, l, matchWon, winStreak, loseStreak);
-		std::cout << "New Personal Balance: $" << acc[p].get_balance() << std::endl;
+		acc[0].set_balance(lev, track, res);
+		std::cout << "New Personal Balance: $" << acc[0].get_balance() << std::endl;
 
-		acc[c].set_balance(lev, l, matchWon, winStreak, loseStreak);
-		std::cout << "New Club Balance: $" << acc[c].get_balance() << std::endl;
+		acc[1].set_balance(lev, track, res);
+		std::cout << "New Club Balance: $" << acc[1].get_balance() << std::endl;
 
 		opt[0].enter(opt);
 		}

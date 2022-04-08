@@ -1,5 +1,6 @@
 #include "League.h"
 #include "Bank.h"
+#include "Print.h"
 #include <iostream>
 #include <string>
 
@@ -24,6 +25,7 @@ League::League() {
 }
 
 
+//creating leagues
 League::League(std::string n, int e, int m, int w, float lP, float iP, float iPA) {
 	leagueName = n;
 	entryFee = e;
@@ -89,6 +91,7 @@ int League::get_winsNeeded() {
 }
 
 
+//percent of personal account that is paid by end of each league
 void League::set_leaguePct(float lP) {
 	leagueWinPct = lP;
 
@@ -100,6 +103,8 @@ float League::get_leaguePct() {
 }
 
 
+//lP = leagueWinPct ; w = winsNeeded
+//percent that is paid to club account after each win
 void League::set_winPct(float lP, int w) {
 	winDepositPct = lP / w;
 
@@ -110,10 +115,11 @@ float League::get_winPct() {
 
 }
 
-void League::set_winDeposit(Bank arr[], int p) 
+//dollar amount paid after each win in league
+void League::set_winDeposit(Bank acc[]) 
 {
 	
-		perWinDeposit = (wD / 100.0) * arr[p].get_principal();
+		perWinDeposit = (wD / 100.0) * acc[0].get_principal();
 	
 }
 
@@ -123,8 +129,9 @@ float League::get_winDeposit() {
 }
 
 
-void League::set_streakDeposit(Bank arr[], int p, int c) {
-	perStreakDeposit = (wD / 100.0) * (arr[p].get_principal() + arr[c].get_balance());
+//dollar amount paid after each win during win streak
+void League::set_streakDeposit(Bank acc[]) {
+	perStreakDeposit = (wD / 100.0) * (acc[0].get_principal() + acc[1].get_balance());
 
 }
 
@@ -134,9 +141,11 @@ float League::get_streakDeposit() {
 }
 
 
+//percent of inflation that is added per loss
 void League::set_inflationPctAdded() 
 {
 	//for each loss, the inflation percent on personal increases by league decided percent
+	//league amount = pA
 		inflationPctAdded = (matchInflationPct * (pA / 100.0));
 
 }
@@ -147,6 +156,7 @@ float League::get_inflationPctAdded() {
 }
 
 
+//percent of personal account lost to inflation after each match
 void League::set_matchInflationPct() {
 	matchInflationPct += inflationPctAdded;
 
@@ -158,9 +168,10 @@ float League::get_matchInflationPct() {
 }
 
 
-void League::set_postMatchWithdraw(Bank arr[],int p)
+//dollar amount of money withdrawn from personal account after each match
+void League::set_postMatchWithdraw(Bank acc[])
 {
-	postMatchWithdraw = (matchInflationPct / 100) * arr[p].get_balance();
+	postMatchWithdraw = (matchInflationPct / 100) * acc[0].get_balance();
 
 }
 
@@ -170,10 +181,11 @@ float League::get_postMatchWithdraw() {
 }
 
 
-void League::set_streakClubWithdraw(bool loseStreak, Bank arr[], int c)
+//dollar amount of money withdrawn from club account during lose streaks
+void League::set_streakClubWithdraw(Bank acc[], bool res[])
 {
-	if (loseStreak == true) {
-		streakClubWithdraw = (matchInflationPct / 100.0) * arr[c].get_balance();
+	if (res[2] == true) {
+		streakClubWithdraw = (matchInflationPct / 100.0) * acc[1].get_balance();
 
 	}
 	else {

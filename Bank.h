@@ -11,13 +11,13 @@ private:
 	float principal;
 	char transType;
 	int transAmount;
-
+	int l;
 
 
 public:
 	Bank();
 
-	//t = account type ; b = balance
+	//for creating bank account object
 	Bank(std::string name, char type, float balance);
 
 
@@ -26,31 +26,31 @@ public:
 	std::string get_name();
 
 
-	//t = account type
 	//differs between personal and club account
+	//t = account type
 	void set_accountType(char t);
 
 	char get_accountType();
 
 
-	//b = balance
 	//completely set the balance
-	void set_balance(int b);
+	//b = balance
+	void set_balance(float b);
 
 	float get_balance();
 
 
+	//adjusting the balance with a deposit/withdrawal
 	//dw = deposit/withdrawl ; a = transaction amount
-	//adjusting the balance with a deposit/withdrawal (allows for changing the balance by an amount in another class)
 	void set_balance(char dw, int a);
 
 
-	//post match balance adjustment (if matchEnd == true)
-	void set_balance(League arr[], int leagueNum, bool matchWon, bool winStreak, bool loseStreak);
+	//post-match balance adjustment
+	void set_balance(League lev[], int track[], bool res[]);
 
 
 	//gets amount of personal account that win amounts will be paid on.
-	void set_principal(bool exitedShop);
+	void set_principal();
 
 	float get_principal();
 

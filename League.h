@@ -1,7 +1,9 @@
 #pragma once
 #include <string>
 class Bank;
+class Print;
 
+//rounding to $00.00
 inline float rnd(float n) {
 	float value = (int)(n * 100 + 0.5001);
 	return (float)value / 100;
@@ -31,6 +33,7 @@ public:
 	League();
 
 	
+	//creating leagues
 	League(std::string name, int entryFee, int numMatches, int winsNeeded, float leagueWinPct, float inflationPct, float inflationPctAdded);
 
 	void set_name(std::string n);
@@ -60,20 +63,20 @@ public:
 
 
 	//lP = leagueWinPct ; w = winsNeeded
-	//percent that is paid to club account after each win (fraction of league percent)
+	//percent that is paid to club account after each win
 	void set_winPct(float lP, int w);
 
 	float get_winPct();
 
 
-	//actual value paid after each win in league
-	void set_winDeposit(Bank arr[], int p);
+	//dollar amount paid after each win in league
+	void set_winDeposit(Bank acc[]);
 
 	float get_winDeposit();
 
 
-	//actual value paid after each win during win streak
-	void set_streakDeposit(Bank arr[], int p, int c);
+	//dollar amount paid after each win during win streak
+	void set_streakDeposit(Bank acc[]);
 
 	float get_streakDeposit();
 
@@ -84,20 +87,20 @@ public:
 	float get_inflationPctAdded();
 
 
-	//percent of personal account lost after each match
+	//percent of personal account lost to inflation after each match
 	void set_matchInflationPct();
 
 	float get_matchInflationPct();
 
 
-	//actual value of money withdrawn from personal account after each match
-	void set_postMatchWithdraw(Bank arr[], int p);
+	//dollar amount of money withdrawn from personal account after each match
+	void set_postMatchWithdraw(Bank acc[]);
 
 	float get_postMatchWithdraw();
 
 
-	//actual value of money withdrawn from club account during lose streaks
-	void set_streakClubWithdraw(bool loseStreak, Bank arr[], int c);
+	//dollar amount of money withdrawn from club account during lose streaks
+	void set_streakClubWithdraw(Bank acc[], bool res[]);
 
 	float get_streakClubWithdraw();
 

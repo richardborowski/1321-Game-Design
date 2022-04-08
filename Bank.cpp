@@ -13,6 +13,7 @@ Bank::Bank() {
 
 }
 
+//for creating bank account objects
 Bank::Bank(std::string n, char t, float b) {
 	accountName = n;
 	accountType = t;
@@ -44,7 +45,7 @@ char Bank::get_accountType() {
 }
 
 
-void Bank::set_balance(int b) {
+void Bank::set_balance(float b) {
 	balance = b;
 
 }
@@ -56,6 +57,7 @@ float Bank::get_balance() {
 }
 
 
+//adjusting the balance with a deposit/withdrawal
 void Bank::set_balance(char dw, int a)
 {
 	transType = dw;
@@ -72,37 +74,35 @@ void Bank::set_balance(char dw, int a)
 }
 
 
-void Bank::set_balance(League arr[], int l, bool matchWon, bool winStreak, bool loseStreak)
+//post-match balance adjustment
+void Bank::set_balance(League lev[], int track[], bool res[])
 {	
+	l = track[2];
 
 	if (accountType == 'p') 
 	{
-		balance -= arr[l].get_postMatchWithdraw();
+		balance -= lev[l].get_postMatchWithdraw();
 	}
 
 	if (accountType == 'c') 
 	{
-		if (matchWon == true && winStreak == false) {
-			balance += arr[l].get_winDeposit();
+		if (res[0] == true && res[1] == false) {
+			balance += lev[l].get_winDeposit();
 		}
-		if (matchWon == true && winStreak == true) {
-			balance += arr[l].get_streakDeposit();
+		if (res[0] == true && res[1] == true) {
+			balance += lev[l].get_streakDeposit();
 		}
-		if (matchWon == false && loseStreak == true) {
-			balance -= arr[l].get_streakClubWithdraw();
+		if (res[0] == false && res[2] == true) {
+			balance -= lev[l].get_streakClubWithdraw();
 		}
 	}
 
 }
 
 
-void Bank::set_principal(bool exitedShop) 
+void Bank::set_principal() 
 {
-	exitedShop = true;
-
-	if (exitedShop == true) {
 		principal = balance;
-	}
 	
 }
 

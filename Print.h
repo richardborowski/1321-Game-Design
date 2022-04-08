@@ -8,29 +8,30 @@ class Print
 private:
 	char printType;
 	std::string subType;
-	bool leagueWon;
 	char press;
+	int l;
 
 public:
 	Print();
 
 	//for creating objects of repeated text
-	Print(char type);
+	Print(char type, int track[]);
 
-	//for printing out needed information to user
-	void print(Print opt[], int m, int l, int h);
+//for printing the main menu 
+//m = menu = 0
+//l = league = 1
+//h = help = 2
+	void print(Print opt[]);
 	
-	//menu or continue
+	//enter to continue or main menu
 	void enter(Print opt[]);
 
-	//help rules
+	//for printing the rules
 	void print(Print opt[], std::string subType);
 
-	//for sub types of repeated info such as: help(rules), tutorial(bank), league(info), etc.
-	void print(Print opt[], std::string subType, League lev[], int l, Bank acc[], int p, int c);
-
-	//post match
-	void print(Print opt[], std::string subType, League lev[], int l, Bank acc[], int p, int c, bool matchWon, bool winStreak, bool loseStreak, int matchesPlayed, int wins);
+	//for printing league information
+	//opt = options, lev = level, acc = account, res = result, track = tracker
+	void print(Print opt[], std::string subType, League lev[], Bank acc[], bool res[], int track[]);
 
 
 
