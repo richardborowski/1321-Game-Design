@@ -196,6 +196,14 @@ void Print::print(Print opt[], std::string subType, League lev[], Bank acc[], bo
 		std::cout << "Welcome to the " << lev[l].get_name() << "!\n";
 		std::cout << "The entry fee for this league is $" << lev[l].get_entryFee() << std::endl;
 		std::cout << "You currently have $" << acc[0].get_balance() << " available in your personal account\n";
+		
+		//ends game if can't pay entry fee
+		if (lev[l].get_entryFee() > acc[0].get_balance()) {
+			std::cout << "You do not have enough to pay the entry fee...\n";
+			std::cout << "GAME OVER\n";
+			exit(0);
+		}
+
 		std::cout << std::endl << "Press enter to pay the entry fee\n";
 		std::cout << "-------------------------------------------------------------------------------------------\n";
 		std::cin.ignore();
