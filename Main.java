@@ -20,10 +20,11 @@ public class Main
     matchWon = false;
     winStreak = false;
     loseStreak = false;
-    leagueWon = true;
+    leagueWon = false;
 
     boolean[] result = { matchWon, winStreak, loseStreak, leagueWon};
 
+    //initially printing out rules to user
     help.print(option, "rules");
 
 
@@ -35,66 +36,46 @@ public class Main
 
     //leagues
     League starter = new League("Starter League", 50, 8, 3, 30, 2, 20);
-    League amateur = new League("Amateur League", 100, 8, 4, 40, 10, 30);
+    League amateur = new League("Amateur League", 50, 8, 4, 40, 10, 30);
     League pro = new League("Pro League", 150, 8, 5, 50, 20, 45);
     League champion = new League("Champion's League", 200, 8, 6, 60, 30, 65);
     League legend = new League("Legend's League", 250, 8, 7, 70, 50, 100);
     League[] level = { starter, amateur, pro, champion, legend };
 
-    //demo starter league
     
+    //loop for running league
     do {
     league.print(option, "intro", level, account, result, tracker);
     //upgrades, store, and shop will be here. 
 
-    //if bool exitedShop/takePrincipal == true;
+    //league info printed after player exits shop
     league.print(option, "info", level, account, result, tracker);
 
-    //first match happens, won.
-    result[0] = true;
-    result[1] = false;
-    result[2] = false;
-    tracker[0] = 1;
-    tracker[1] = 1;
-    league.print(option, "postMatch", level, account, result, tracker);
+    //running matches until league ends
+    for (int i = 0; i < level[tracker[2]].get_numMatches(); i++) {
+      tracker[0]++; //matchesPlayed + 1
+      
+      //run fight
+      //return result[0 through 3]
+        result[0] = true;
+      if (result[0] == true){
+        //if matchWon == true
+          tracker[1] ++; //wins + 1
+      }
 
+      //end of match text
+      league.print(option, "postMatch", level, account, result, tracker);
 
-    //second match happens, won.
-    result[0] = true;
-    result[1] = true;
-    result[2] = false;
-    tracker[0] = 2;
-    tracker[1] = 2;
-    league.print(option, "postMatch", level, account, result, tracker);
+      if (tracker[1] == level[tracker[2]].get_winsNeeded()){ //wins == winsNeeded
+        //leaguewon = true
+        result[3] = true;
+        break;
+      }
+    }
 
-    //third match happens, lost.
-    result[0] = false;
-    result[1] = false;
-    result[2] = false;
-    tracker[0] = 3;
-    tracker[1] = 2;
-    league.print(option, "postMatch", level, account, result, tracker);
-
-    //fourth match happens, lost.
-    result[0] = false;
-    result[1] = false;
-    result[2] = true;
-    tracker[0] = 4;
-    tracker[1] = 2;
-    league.print(option, "postMatch", level, account, result, tracker);
-
-    //fifth match happens, won. League won.
-    result[0] = true;
-    result[1] = false;
-    result[2] = false;
-    result[3] = true;
-    tracker[0] = 4;
-    tracker[1] = 3;
-    league.print(option, "postMatch", level, account, result, tracker);
-
-    //if bool leagueEnd = true
+    //end of league text
     league.print(option, "end", level, account, result, tracker);
-      }while (tracker[2] <= 5);
+      }while (tracker[2] <= 4);
     
     }
 }

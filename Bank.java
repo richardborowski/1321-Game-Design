@@ -114,7 +114,7 @@ public void set_principal()
 }
 
 public float get_principal() {
-	return principal;
+	return rnd(principal);
 
 }
 

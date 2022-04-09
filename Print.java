@@ -276,7 +276,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 		if (track[1] == lev[l].get_winsNeeded())
 		{
 			res[3] = true;
-			System.out.println ("Congratulations! You have won " + lev[l].get_winsNeeded() + " matches and beat the " + lev[l].get_name() + "!");
+			System.out.println ("Congratulations! You have won " + lev[l].get_winsNeeded() + " matches and beat the " + lev[l].get_name() + "!\n");
 
 			lev[l].set_winDeposit(acc);
 			lev[l].set_streakDeposit(acc);
@@ -284,7 +284,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 			lev[l].set_streakClubWithdraw(acc, res);
 
 			System.out.println (lev[l].get_matchInflationPct() + "% of your personal account has been withdrawn");
-			System.out.println ("$" + lev[l].get_winDeposit() + " has been deposited into your club account");
+			System.out.println ("$" + lev[l].get_winDeposit() + " has been deposited into your club account\n");
 
 			acc[0].set_balance(lev, track, res);
 			System.out.println ("New Personal Balance: $" + acc[0].get_balance());
@@ -300,7 +300,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 		{
 			System.out.println ("Congrats on the win!");
 			System.out.println ("You now have " + track[1] + "/" + lev[l].get_winsNeeded() + " wins needed to beat the league.");
-			System.out.println ("There are " + (lev[l].get_numMatches() - track[0]) + " matches remaining.");
+			System.out.println ("There are " + (lev[l].get_numMatches() - track[0]) + " matches remaining.\n");
 
 			lev[l].set_winDeposit(acc);
 			lev[l].set_streakDeposit(acc);
@@ -308,7 +308,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 			lev[l].set_streakClubWithdraw(acc, res);
 
 			System.out.println (lev[l].get_matchInflationPct() + "% of your personal account has been withdrawn due to inflation.");
-			System.out.println ("$" + lev[l].get_winDeposit() + " has been deposited into your club account for the win.");
+			System.out.println ("$" + lev[l].get_winDeposit() + " has been deposited into your club account for the win.\n");
 
 			acc[0].set_balance(lev, track, res);
 			System.out.println ("New Personal Balance: $" + acc[0].get_balance());
@@ -324,7 +324,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 		{
 			System.out.println ("Congrats on the win!");
 			System.out.println ("You now have " + track[1] + "/" + lev[l].get_winsNeeded() + " wins needed to beat the league.");
-			System.out.println ("There are " + (lev[l].get_numMatches() - track[0]) + " matches remaining." );
+			System.out.println ("There are " + (lev[l].get_numMatches() - track[0]) + " matches remaining.\n" );
 			System.out.println ("You're on a win streak!\n");
 			System.out.println ("Your club balance will be added to your personal account's principal for the " + lev[l].get_winPct() + "% win deposit\n");
 
@@ -334,7 +334,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 			lev[l].set_streakClubWithdraw(acc, res);
 
 			System.out.println ("\n" + lev[l].get_matchInflationPct() + "% of your personal account has been withdrawn");
-			System.out.println ("$" + lev[l].get_streakDeposit() + " has been deposited into your club account");
+			System.out.println ("$" + lev[l].get_streakDeposit() + " has been deposited into your club account\n");
 
 			acc[0].set_balance(lev, track, res);
 			System.out.println ("New Personal Balance: $" + acc[0].get_balance());
@@ -350,14 +350,13 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 		{
 			System.out.println ("You lost the match! Bummer...");
 			System.out.println ("You have " + track[1] + "/" + lev[l].get_winsNeeded() + " wins needed to beat the league.");
-			System.out.println ("There are " + (lev[l].get_numMatches() - track[0]) + " matches remaining.");
+			System.out.println ("There are " + (lev[l].get_numMatches() - track[0]) + " matches remaining.\n");
 
 			lev[l].set_inflationPctAdded();
 			lev[l].set_matchInflationPct();
 			System.out.println (lev[l].get_inflationPctAdded() + "% has been added to the inflation on your personal account and is now " + lev[l].get_matchInflationPct() + "%");
-			System.out.println ();
 
-			System.out.println (lev[l].get_matchInflationPct() + "% of your personal account has been withdrawn" );
+			System.out.println (lev[l].get_matchInflationPct() + "% of your personal account has been withdrawn\n" );
 
 			lev[l].set_winDeposit(acc);
 			lev[l].set_streakDeposit(acc);
@@ -394,7 +393,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 		System.out.println ();
 
 		System.out.println (lev[l].get_matchInflationPct() + "% of your personal account has been withdrawn");
-		System.out.println (lev[l].get_matchInflationPct() + "% of your club account has been withdrawn");
+		System.out.println (lev[l].get_matchInflationPct() + "% of your club account has been withdrawn\n");
 
 		acc[0].set_balance(lev, track, res);
 		System.out.println ("New Personal Balance: $" + acc[0].get_balance());
