@@ -47,6 +47,7 @@ public class Main
     do {
     league.print(option, "intro", level, account, result, tracker);
     //upgrades, store, and shop will be here. 
+        shop();
 
     //league info printed after player exits shop
     league.print(option, "info", level, account, result, tracker);
