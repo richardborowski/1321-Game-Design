@@ -5,7 +5,7 @@ public class Shop {
     private static int itemPrice;
 
 
-     Shop(Bank personal, double inflation, Charachter main)
+     public static void Shop(Bank personal, double inflation, Charachter main)
     {
         Scanner scan= new Scanner(System.in);
         System.out.println("[Welcome to the Shop]\n" +
