@@ -28,7 +28,7 @@ public Print(char type, int[] track) {
 //e = exit
 
 //for printing the main menu 
-public void print(Print[] opt)
+public void print(Print[] opt, Charachter[] user)
 {
 	//main menu
 	int menuOption, helpOption;
@@ -43,15 +43,15 @@ public void print(Print[] opt)
 		{
 			System.out.print( "[Main Menu]\n" );
 			System.out.print( "1) Help\n" );
-      //System.out.print( "2) Check Stats\n" );
-			System.out.print( "2) Exit Game\n" );
-			System.out.print( "3) Return to Game\n\n" );
+      System.out.print( "2) Check Stats\n" );
+			System.out.print( "3) Exit Game\n" );
+			System.out.print( "4) Return to Game\n\n" );
 
 			do {
 				System.out.print( "Choose an option: " );
 				menuOption = sc.nextInt();
 				System.out.println();
-			} while (menuOption != 1 && menuOption != 2 && menuOption != 3);
+			} while (menuOption != 1 && menuOption != 2 && menuOption != 3 && menuOption != 4);
 
 			//help menu
 			if (menuOption == 1)
@@ -68,137 +68,36 @@ public void print(Print[] opt)
 
 				switch (helpOption) {
 				case 1:
-					opt[2].print(opt, "rules");
+					opt[2].print(opt, "rules", user);
 					break;
 				case 2:
 					//start fighting tutorial
-					 Scanner input = new Scanner(System.in);
-        Random rand = new Random();
-        Charachter tut = new Charachter("Player");
-        Charachter tute = new Charachter("Tutorial");
-        System.out.println("[Tutorial Fight]");
-        System.out.println(   "        |||||||||                                                    |||||||||                                                                                         \n" +
-                "        | _   _ |                                                    | _   _ |                                                                                \n" +
-                "       (  ' _ '  )                                                  (  ' _ '  )                                                                                   \n" +
-                "        |  ___  |                                                    |  ___  |                                       \n" +
-                "         |_____|                                                      |_____|                                    \n" +
-                "  _______/     \\_______                                        _______/     \\_______                                    \n" +
-                " /                     \\                                      /                     \\                                                                                  \n" +
-                "|   |\\             /|   |                                    |   |\\             /|   |                                               \n" +
-                "|   ||  .       .  ||   |          __      _______           |   ||  .       .  ||   |                                           \n" +
-                "|   / \\           / \\   |          \\ \\    / / ____|          |   / \\           / \\   |                                                                                     \n" +
-                "\\  |   | |_ | _| |   |  /           \\ \\  / / (___            \\  |   | |_ | _| |   |  /                                                                                     \n" +
-                "|==|   | |_ | _| |   |==|            \\ \\/ / \\___ \\           |==|   | |_ | _| |   |==|                                                                                 \n" +
-                "/  /_ _|_|__|__|_|_ _\\  \\             \\  /  ____) |          /  /_ _|_|__|__|_|_ _\\  \\                                                                               \n" +
-                "|___| /            \\|___|              \\/  |_____(_)         |___| /            \\|___|                                                                               \n" +
-                "      |     |      |                                               |     |      |                                                                              \n" +
-                "      |     |      |                                               |     |      |                                                                       \n" +
-                "      |PLA  |   PLA|                                               |TUT  |   TUT|                                                                 \n" +
-                "      |     |      |                                               |     |      |                                                                    \n" +
-                "      \"|\"\"|\"\"\"|\"\"|\"\"                                               \"|\"\"|\"\"\"|\"\"|\"\"                                                                   \n" +
-                "       |  |   |  |      -Player-                                    |  |   |  |      -Tutorial Enemy-                                                                   \n" +
-                "       |  |   |  |                                                  |  |   |  |                                                                      \n" +
-                "      /   )   (   \\                                                /   )   (   \\                                                                     \n" +
-                "     Ooooo     ooooO                                              Ooooo     ooooO                                                               \n" +
-                "\n");
-        System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
-        boolean end = false;
-        do {
+					 tutorial();
 
-            System.out.println("Options: ");
-            System.out.println("1)Hit \n2)Dodge\n3)Rest");
-            int pc = input.nextInt();
-            int oc = (int)(Math.random()*(4-1)) + 1;
-            System.out.println(oc);
-
-            if(pc == 1 && oc == 1)
-            {
-                System.out.println("Both Hit!");
-                tut.getHit(tute.getPlayerDamage());
-                tute.getHit(tut.getPlayerDamage());
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
-            }
-            else if(pc == 1 && oc == 2)
-            {
-                System.out.println("Opponent dodged your attack and countered!");
-                tut.getHit(tute.getPlayerDamage());
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
-            }
-            else if(pc == 1 && oc == 3)
-            {
-                System.out.println("You Hit while opponent was resting!");
-                tute.getHit(tut.getPlayerDamage());
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
-            }
-            else if(pc == 2 && oc == 1)
-            {
-                System.out.println("You dodged your opponents attack and countered!");
-                tute.getHit(tut.getPlayerDamage());
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
-            }
-            else if(pc == 2 && oc == 2 )
-            {
-                System.out.println("Both Dodged!");
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
-            }
-            else if(pc == 2 && oc == 3)
-            {
-                System.out.println("Opponent Rested!");
-                tute.rest();
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
-            }
-            else if(pc == 3 && oc == 1)
-            {
-                System.out.println("Opponent Hit while you were resting!");
-                tut.getHit(tute.getPlayerDamage());
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
-            }
-            else if(pc == 3 && oc == 2)
-            {
-                System.out.println("You Rested!");
-                tut.rest();
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
-            }
-            else if(pc == 3 && oc == 3)
-            {
-                System.out.println("Both Rested");
-                tut.rest();
-                tute.rest();
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
-            }
-
-
-
-            if(tut.getPlayerHealth() <= 0)
-            {
-                System.out.println("You got Knocked Out");
-                System.out.println("Tutorial Over");
-                end = true;
-                break;
-            }
-            if(tute.getPlayerHealth() <= 0)
-            {
-                System.out.println("You win");
-                end = true;
-                break;
-            }
-
-        }while(end == false);
-    }
-//end tutorial
         
 					break;
 				}
       }
 
-		 if (menuOption == 2)
+    //check stats
+    if (menuOption == 2)
+			{
+      System.out.println("[Player Stats]");
+                    System.out.println("Name: " + user[0].getPlayerName());
+                    System.out.println("Health: " + user[0].getPlayerHealth());
+                    System.out.println("Damage: " + user[0].getPlayerDamage());
+      System.out.println();
+        }
+
+    //exit game
+		 if (menuOption == 3)
 			{
 				System.out.println ("[Exit Game]\n");
 				do {
 					System.out.println ("Are you sure you want to exit? (Y/N)\n");
 					exitOption = sc.next().charAt(0);
 				} while (exitOption != 'Y' && exitOption != 'N');
-
+            
 				switch (exitOption) {
 				case 'Y':
 					System.out.println ("Goodbye!\n");
@@ -211,15 +110,17 @@ public void print(Print[] opt)
 			}
   
 			//return to game
-			else if (menuOption == 3) {
-			}
-    
-	} while (menuOption != 3);
+			else if (menuOption == 4) {	
+        opt[0].enter(opt, user);
+        System.out.println();
+        }
+      }
+	} while (menuOption != 4);
 }
 
 
 //enter to continue or main menu
-public void enter(Print[] opt)
+public void enter(Print[] opt, Charachter[] user)
 {
 	Scanner sc = new Scanner(System.in);
 	do {
@@ -237,14 +138,14 @@ public void enter(Print[] opt)
 		}
 		else if (press == 'm') {
 			System.out.println();
-			opt[0].print(opt);
+			opt[0].print(opt, user);
 		}
 	} while (press != '\n' && press != 'm');
 }
 
 
 //for printing rules
-public void print(Print[] opt, String subType)
+public void print(Print[] opt, String subType, Charachter[] user)
 {
 	if (printType == 'h' && subType == "rules") {
 		System.out.println ("Help - Fight Club Rules:\n");
@@ -289,13 +190,13 @@ promptEnterKey();
 		System.out.println ("*Note that enemies will be getting stronger and item prices and entry fees are increasing as \nyou progress through the leagues, so you should aim to leave each league with as much money \nas you possibly can.\n");
 		System.out.println ("Good luck!\n");
 
-		opt[0].enter(opt);
+			opt[0].enter(opt, user);
 	}
 }
 
 
 //for printing league information
-public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean[] res, int[] track)
+public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean[] res, int[] track, Charachter[] user)
 {
 	l = track[2];
 	Scanner sc = new Scanner(System.in);
@@ -321,12 +222,12 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 			System.exit(0);
 		}
     
-		System.out.println ("\nPress enter to pay the entry fee\n");
+		System.out.println ("Press enter to pay the entry fee\n");
 		System.out.println ("-------------------------------------------------------------------------------------------\n");
-		sc.nextLine();
 
 		acc[0].set_balance('w', lev[l].get_entryFee());
 		System.out.println ("New Personal Balance: $" + acc[0].get_balance());
+    System.out.println();
 	}
 
 	//league info
@@ -344,7 +245,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 		System.out.println ("Percent-Increase on inflation per loss: " + lev[l].get_inflationPctAdded() + "%");
 
 
-		opt[0].enter(opt);
+			opt[0].enter(opt, user);
 	}
 
 	//league end
@@ -373,7 +274,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 				System.exit(0);
 			}
     
-		opt[0].enter(opt);
+			opt[0].enter(opt, user);
 	}
 
 
@@ -407,7 +308,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 			acc[1].set_balance(lev, track, res);
 			System.out.println ("New Club Balance: $" + acc[1].get_balance());
 
-			opt[0].enter(opt);
+			opt[0].enter(opt, user);
 		}
 
 		//won match with no streak
@@ -431,7 +332,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 			acc[1].set_balance(lev, track, res);
 			System.out.println ("New Club Balance: $" + acc[1].get_balance());
 
-			opt[0].enter(opt);
+			opt[0].enter(opt, user);
 		}
 
 		//won match with streak
@@ -457,7 +358,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 			acc[1].set_balance(lev, track, res);
 			System.out.println ("New Club Balance: $" + acc[1].get_balance());
 
-			opt[0].enter(opt);
+			opt[0].enter(opt, user);
 		}
 
 		//lose match no streak
@@ -484,7 +385,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 			acc[0].set_balance(lev, track, res);
 			System.out.println ("New Club Balance: $" + acc[1].get_balance());
 
-			opt[0].enter(opt);
+			opt[0].enter(opt, user);
 		}
 
 
@@ -516,7 +417,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 		acc[1].set_balance(lev, track, res);
 		System.out.println ("New Club Balance: $" + acc[1].get_balance());
 
-		opt[0].enter(opt);
+			opt[0].enter(opt, user);
 		}
 	}
 }
@@ -527,5 +428,121 @@ public void promptEnterKey(){
    scanner.nextLine();
   System.out.println();
 }
-  
+
+  public static void tutorial()
+    {
+  Scanner input = new Scanner(System.in);
+        Random rand = new Random();
+        Charachter tut = new Charachter("Player", 15, 0, 2,3);
+        Charachter tute = new Charachter("Tutorial", 15, 0, 2,3);
+        System.out.println("[Tutorial Fight]");
+        System.out.println(   "        |||||||||                                                    |||||||||                                                                                         \n" +
+                "        | _   _ |                                                    | _   _ |                                                                                \n" +
+                "       (  ' _ '  )                                                  (  ' _ '  )                                                                                   \n" +
+                "        |  ___  |                                                    |  ___  |                                       \n" +
+                "         |_____|                                                      |_____|                                    \n" +
+                "  _______/     \\_______                                        _______/     \\_______                                    \n" +
+                " /                     \\                                      /                     \\                                                                                  \n" +
+                "|   |\\             /|   |                                    |   |\\             /|   |                                               \n" +
+                "|   ||  .       .  ||   |          __      _______           |   ||  .       .  ||   |                                           \n" +
+                "|   / \\           / \\   |          \\ \\    / / ____|          |   / \\           / \\   |                                                                                     \n" +
+                "\\  |   | |_ | _| |   |  /           \\ \\  / / (___            \\  |   | |_ | _| |   |  /                                                                                     \n" +
+                "|==|   | |_ | _| |   |==|            \\ \\/ / \\___ \\           |==|   | |_ | _| |   |==|                                                                                 \n" +
+                "/  /_ _|_|__|__|_|_ _\\  \\             \\  /  ____) |          /  /_ _|_|__|__|_|_ _\\  \\                                                                               \n" +
+                "|___| /            \\|___|              \\/  |_____(_)         |___| /            \\|___|                                                                               \n" +
+                "      |     |      |                                               |     |      |                                                                              \n" +
+                "      |     |      |                                               |     |      |                                                                       \n" +
+                "      |PLA  |   PLA|                                               |TUT  |   TUT|                                                                 \n" +
+                "      |     |      |                                               |     |      |                                                                    \n" +
+                "      \"|\"\"|\"\"\"|\"\"|\"\"                                               \"|\"\"|\"\"\"|\"\"|\"\"                                                                   \n" +
+                "       |  |   |  |      -Player-                                    |  |   |  |      -Tutorial Enemy-                                                                   \n" +
+                "       |  |   |  |                                                  |  |   |  |                                                                      \n" +
+                "      /   )   (   \\                                                /   )   (   \\                                                                     \n" +
+                "     Ooooo     ooooO                                              Ooooo     ooooO                                                               \n" +
+                "\n");
+        System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
+        boolean end = false;
+        do {
+
+            System.out.println("Options: ");
+            System.out.println("1)Hit \n2)Dodge\n3)Rest");
+            int pc = input.nextInt();
+            int oc = (int)(Math.random()*(4-1)) + 1;
+            System.out.println(oc);
+
+            if(pc == 1 && oc == 1)
+            {
+                System.out.println("Both Hit!");
+                tut.getHit(tute.getPlayerDamage());
+                tute.getHit(tut.getPlayerDamage());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
+            }
+            else if(pc == 1 && oc == 2)
+            {
+                System.out.println("Opponent dodged your attack and countered!");
+                tut.getHit(tute.getPlayerDamage());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
+            }
+            else if(pc == 1 && oc == 3)
+            {
+                System.out.println("You Hit while opponent was resting!");
+                tute.getHit(tut.getPlayerDamage());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
+            }
+            else if(pc == 2 && oc == 1)
+            {
+                System.out.println("You dodged your opponents attack and countered!");
+                tute.getHit(tut.getPlayerDamage());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
+            }
+            else if(pc == 2 && oc == 2 )
+            {
+                System.out.println("Both Dodged!");
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
+            }
+            else if(pc == 2 && oc == 3)
+            {
+                System.out.println("Opponent Rested!");
+                tute.rest();
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
+            }
+            else if(pc == 3 && oc == 1)
+            {
+                System.out.println("Opponent Hit while you were resting!");
+                tut.getHit(tute.getPlayerDamage());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
+            }
+            else if(pc == 3 && oc == 2)
+            {
+                System.out.println("You Rested!");
+                tut.rest();
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
+            }
+            else if(pc == 3 && oc == 3)
+            {
+                System.out.println("Both Rested");
+                tut.rest();
+                tute.rest();
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
+            }
+
+
+
+            if(tut.getFighthealth() <= 0)
+            {
+                System.out.println("You got Knocked Out");
+                System.out.println("Tutorial Over");
+                end = true;
+                break;
+            }
+            if(tute.getFighthealth() <= 0)
+            {
+                System.out.println("You win");
+                end = true;
+                break;
+            }
+
+        }while(end == false);
+    }
+
 }

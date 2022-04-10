@@ -6,7 +6,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
   //opponenets array
-        Charachter one = new Charachter("M. Tyson", 10, 0, 2,0);
+               Charachter one = new Charachter("M. Tyson", 10, 0, 2,0);
         Charachter two = new Charachter("F. Mayweather", 11, 0, 2,0);
         Charachter three = new Charachter("J. Frazier", 12, 0, 2,0);
         Charachter four = new Charachter("G. Foreman", 13, 0, 2,0);
@@ -60,28 +60,25 @@ public class Main {
   //user character
         String name = input.nextLine();
         Charachter main = new Charachter(name);
+      Charachter[] player = {main};
       
         System.out.println("Welcome " + main.getPlayerName()+ "! Here are the rules to the fight club:");
       	System.out.println ("-------------------------------------------------------------------------------------------\n");
         boolean c = false;
       
       //initially printing out rules to user
-    help.print(option, "rules");
+    help.print(option, "rules", player);
 
       
     //loop for running leagues
     do {
-    league.print(option, "intro", level, account, result, tracker);
-        
-        new Shop();
+    league.print(option, "intro", level, account, result, tracker, player);
 
     //visit store
-    //System.out.println("[Item Shop]");
-    //System.out.println("Welcome to the Item Shop!"\n);
-    //Shop(account);
+      shop(account, tracker, main);
 
     //league info printed after player exits shop
-    league.print(option, "info", level, account, result, tracker);
+    league.print(option, "info", level, account, result, tracker, player);
 
     //running matches until league ends
     for (int i = 0; i < level[tracker[2]].get_numMatches(); i++) {
@@ -102,7 +99,7 @@ public class Main {
       }
 
       //end of match text
-      league.print(option, "postMatch", level, account, result, tracker);
+      league.print(option, "postMatch", level, account, result, tracker, player);
 
       if (tracker[1] == level[tracker[2]].get_winsNeeded()){ //wins == winsNeeded
         //leaguewon = true
@@ -112,7 +109,7 @@ public class Main {
     }
 
     //end of league text
-    league.print(option, "end", level, account, result, tracker);
+    league.print(option, "end", level, account, result, tracker, player);
       } while (tracker[2] <= 4);
       }
     
@@ -410,41 +407,42 @@ public class Main {
               
             } while (end == false);
       }
-      
-  /* public static void shop(Bank personal, double inflation, Charachter main)
+
+  //shop method
+   public static void shop(Bank[] acc, int[] track, Charachter main)
     {
         Scanner scan= new Scanner(System.in);
         System.out.println("[Welcome to the Shop]\n" +
                 "Upgrade your equipment to perform better in the ring!");
-        System.out.println("Your current balance is $" + personal.getBalance());
+        System.out.println("Your current balance is $" + acc[0].get_balance());
         System.out.println("Please chose a category \n1) Gloves \n2) Shorts \n3) Shoes \n4) Exit");
-        int itemMenu = scan.nextShort();
+        int itemMenu = scan.nextInt();
         switch(itemMenu){
             case 1:
                 System.out.println("[Boxing Gloves]");
                 System.out.println("Which ones do you want to buy?");
-                System.out.println("1) Silver Pro Gloves $" + (200*personal.getInflation()) + " - upgrades damage by +2");
-                System.out.println("2) Diamond Champion Gloves $" + (650*personal.getInflation()) + " - upgrades damage by +7");
+                System.out.println("1) Silver Pro Gloves $" + (20*(track[2]+1)) + " - upgrades damage by +2");
+                System.out.println("2) Diamond Champion Gloves $" + (65*(track[2]+1)) + " - upgrades damage by +7");
                 System.out.println("3) Exit");
                 int playerPurchase= scan.nextInt();
                 switch (playerPurchase){
                     case 1:
 
-                        double itemPrice=(200*personal.getInflation());
-                        personal.subBalance(itemPrice);
+                        int itemPrice=(20*(track[2]+1));
+                        acc[0].set_balance('w', itemPrice);
                         main.addDamage(2);
                         break;
 
                     case 2:
 
-                        itemPrice=(650*personal.getInflation());
-                        personal.subBalance(itemPrice);
+                        itemPrice=(65*(track[2]+1));
+                        acc[0].set_balance('w', itemPrice);
                         main.addDamage(5);
                         break;
                     default:
                         break;
                 }
-                System.out.println("Your balance is now $" + personal.getBalance());
+                System.out.println("Your balance is now $" + acc[0].get_balance());
                 System.out.println();
 
 
@@ -452,25 +450,25 @@ public class Main {
             case 2:
                 System.out.println("[Boxing Shorts]");
                 System.out.println("Which ones do you want to buy?");
-                System.out.println("1) Rookie Shorts $" + (200*personal.getInflation()) + " - upgrades health by +2");
-                System.out.println("2) Champion Shorts $" + (750*personal.getInflation()) + " upgrades health by +9");
+                System.out.println("1) Rookie Shorts $" + (20*(track[2]+1)) + " - upgrades health by +2");
+                System.out.println("2) Champion Shorts $" + (75*(track[2]+1)) + " upgrades health by +9");
                 System.out.println("3) Exit");
                 playerPurchase= scan.nextInt();
                 switch (playerPurchase){
                     case 1:
-                        double itemPrice=(200*personal.getInflation());
-                        personal.subBalance(itemPrice);
+                        int itemPrice=(20*(track[2]+1));
+                        acc[0].set_balance('w', itemPrice);
                         main.addHealth(2);
                         break;
                     case 2:
-                        itemPrice=(750*personal.getInflation());
-                        personal.subBalance(itemPrice);
+                        itemPrice=(75*(track[2]+1));
+                        acc[0].set_balance('w', itemPrice);
                         main.addHealth(10);
                         break;
                     default:
                         break;
                 }
-                System.out.println("Your balance is now $" + personal.getBalance());
+                System.out.println("Your balance is now $" + acc[0].get_balance());
                 System.out.println();
 
             break;
@@ -478,20 +476,20 @@ public class Main {
             case 3:
                 System.out.println("[Boxing Shoes]");
                 System.out.println("Which ones do you want to buy?");
-                System.out.println("1- Semi Pro Shoes $" + (200* personal.getInflation()) + " - upgrades damage by +1 and health by +1");
-                System.out.println("2- Grand Master Shoes $" + (850*personal.getInflation()) + " - upgrades damage by +2 and health by +8");
+                System.out.println("1- Semi Pro Shoes $" + (20*(track[2]+1)) + " - upgrades damage by +1 and health by +1");
+                System.out.println("2- Grand Master Shoes $" + (85*(track[2]+1)) + " - upgrades damage by +2 and health by +8");
                 System.out.println("3) Exit");
                 playerPurchase= scan.nextInt();
                 switch (playerPurchase){
                     case 1:
-                        double itemPrice=(200*personal.getInflation());
-                        personal.subBalance(itemPrice);
+                        int itemPrice= (20*(track[2]+1));
+                        acc[0].set_balance('w', itemPrice);
                         main.addDamage(1);
                         main.addHealth(1);
                         break;
                     case 2:
-                        itemPrice=(850*personal.getInflation());
-                        personal.subBalance(itemPrice);
+                        itemPrice=(85*(track[2]+1));
+                        acc[0].set_balance('w', itemPrice);
                         main.addDamage(2);
                         main.addHealth(8);
                         break;
@@ -499,7 +497,7 @@ public class Main {
                         break;
 
                 }
-                System.out.println("Your balance is now $" + personal.getBalance());
+                System.out.println("Your balance is now $" + acc[0].get_balance());
                 System.out.println();
 
                 break;
@@ -509,9 +507,6 @@ public class Main {
                 System.out.println("Invalid Selection.");
             break;
         }
-    }
-
-*/
 
 }
-
+}
