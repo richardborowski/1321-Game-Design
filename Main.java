@@ -6,14 +6,14 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
   //opponenets array
-        Charachter one = new Charachter("M. Tyson", 10, 0, 2);
-        Charachter two = new Charachter("F. Mayweather", 11, 0, 2);
-        Charachter three = new Charachter("J. Frazier", 12, 0, 2);
-        Charachter four = new Charachter("G. Foreman", 13, 0, 2);
-        Charachter five = new Charachter("R. Marciano", 15, 0, 3);
-        Charachter six = new Charachter("H. Armstrong", 15, 0, 3);
-        Charachter seven = new Charachter("SR. Robinson", 15, 0, 3);
-        Charachter eight = new Charachter("M. Ali", 15, 0, 3);
+        Charachter one = new Charachter("M. Tyson", 10, 0, 2,0);
+        Charachter two = new Charachter("F. Mayweather", 11, 0, 2,0);
+        Charachter three = new Charachter("J. Frazier", 12, 0, 2,0);
+        Charachter four = new Charachter("G. Foreman", 13, 0, 2,0);
+        Charachter five = new Charachter("R. Marciano", 15, 0, 3,0);
+        Charachter six = new Charachter("H. Armstrong", 15, 0, 3,0);
+        Charachter seven = new Charachter("SR. Robinson", 15, 0, 3,0);
+        Charachter eight = new Charachter("M. Ali", 15, 0, 3,0);
 
         Charachter[] leagueone = {one,two,three,four,five,six,seven,eight};
 
@@ -159,8 +159,8 @@ public class Main {
     {
         Scanner input = new Scanner(System.in);
         Random rand = new Random();
-        Charachter tut = new Charachter("Player");
-        Charachter tute = new Charachter("Tutorial");
+        Charachter tut = new Charachter("Player", 15, 0, 2,3);
+        Charachter tute = new Charachter("Tutorial", 15, 0, 2,3);
         System.out.println("[Tutorial Fight]");
         System.out.println(   "        |||||||||                                                    |||||||||                                                                                         \n" +
                 "        | _   _ |                                                    | _   _ |                                                                                \n" +
@@ -186,7 +186,7 @@ public class Main {
                 "      /   )   (   \\                                                /   )   (   \\                                                                     \n" +
                 "     Ooooo     ooooO                                              Ooooo     ooooO                                                               \n" +
                 "\n");
-        System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
+        System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
         boolean end = false;
         do {
 
@@ -201,67 +201,67 @@ public class Main {
                 System.out.println("Both Hit!");
                 tut.getHit(tute.getPlayerDamage());
                 tute.getHit(tut.getPlayerDamage());
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
             }
             else if(pc == 1 && oc == 2)
             {
                 System.out.println("Opponent dodged your attack and countered!");
                 tut.getHit(tute.getPlayerDamage());
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
             }
             else if(pc == 1 && oc == 3)
             {
                 System.out.println("You Hit while opponent was resting!");
                 tute.getHit(tut.getPlayerDamage());
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
             }
             else if(pc == 2 && oc == 1)
             {
                 System.out.println("You dodged your opponents attack and countered!");
                 tute.getHit(tut.getPlayerDamage());
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
             }
             else if(pc == 2 && oc == 2 )
             {
                 System.out.println("Both Dodged!");
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
             }
             else if(pc == 2 && oc == 3)
             {
                 System.out.println("Opponent Rested!");
                 tute.rest();
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
             }
             else if(pc == 3 && oc == 1)
             {
                 System.out.println("Opponent Hit while you were resting!");
                 tut.getHit(tute.getPlayerDamage());
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
             }
             else if(pc == 3 && oc == 2)
             {
                 System.out.println("You Rested!");
                 tut.rest();
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
             }
             else if(pc == 3 && oc == 3)
             {
                 System.out.println("Both Rested");
                 tut.rest();
                 tute.rest();
-                System.out.println("Player Health: " + tut.getPlayerHealth() + "            Opponents Health: " + tute.getPlayerHealth());
+                System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
             }
 
 
 
-            if(tut.getPlayerHealth() <= 0)
+            if(tut.getFighthealth() <= 0)
             {
                 System.out.println("You got Knocked Out");
                 System.out.println("Tutorial Over");
                 end = true;
                 break;
             }
-            if(tute.getPlayerHealth() <= 0)
+            if(tute.getFighthealth() <= 0)
             {
                 System.out.println("You win");
                 end = true;
@@ -335,9 +335,20 @@ public class Main {
                     arr[track[0] - 1].getHit(a.getPlayerDamage());
                     System.out.println("Player Health: " + a.getFighthealth() + "            Opponents Health: " + arr[track[0] - 1].getFighthealth());
                 } else if (pc == 2 && oc == 1) {
-                    System.out.println("You dodged your opponents attack and countered!");
-                    arr[track[0] - 1].getHit(a.getPlayerDamage());
-                    System.out.println("Player Health: " + a.getFighthealth() + "            Opponents Health: " + arr[track[0] - 1].getFighthealth());
+
+                    if(a.getFightstamina() <= 0)
+                    {
+                        System.out.println("You are out of stamina. Dodge Failed");
+                        a.getHit(arr[track[0] - 1].getPlayerDamage());
+                        System.out.println("Player Health: " + a.getFighthealth() + "            Opponents Health: " + arr[track[0] - 1].getFighthealth());
+                    }
+                    else {
+                        a.decFightStamina(1);
+                        System.out.println("You dodged your opponents attack and countered!");
+                        arr[track[0] - 1].getHit(a.getPlayerDamage());
+                        System.out.println("Player Health: " + a.getFighthealth() + "            Opponents Health: " + arr[track[0] - 1].getFighthealth());
+                    }
+
                 } else if (pc == 2 && oc == 2) {
                     System.out.println("Both Dodged!");
                     System.out.println("Player Health: " + a.getFighthealth() + "            Opponents Health: " + arr[track[0] - 1].getFighthealth());
@@ -363,7 +374,7 @@ public class Main {
 
                 if (a.getFighthealth() <= 0) {
                     System.out.println("You got Knocked Out");
-                  
+                  a.resetStamina();
                   //checking for lose streak
                   if (track[0] > 1 && res[0] == false){
                     res[0] = false;
@@ -380,7 +391,7 @@ public class Main {
               
                 if (arr[track[0] - 1].getFighthealth() <= 0) {
                     System.out.println("You win");
-
+                    a.resetStamina();
                   //checking for win streak
                   if (track[0] > 1 && res[0] == true){
                     res[0] = true;

@@ -5,6 +5,8 @@ public class Charachter {
     private int fighthealth;
     private double money;
     private int damage;
+    private int stamina;
+    private int fightstamina;
 
     public Charachter(String name)
     {
@@ -13,17 +15,20 @@ public class Charachter {
         this.fighthealth = this.health;
         this.money = 0;
         this.damage = 2;
+        this.stamina = 3;
+        this.fightstamina = stamina;
 
     }
 
 
-    public Charachter(String name, int health, double money, int damage)
+    public Charachter(String name, int health, double money, int damage, int stamina)
     {
         this.name = name;
         this.health = health;
         this.fighthealth = this.health;
         this.money = money;
         this.damage = damage;
+        this.stamina = stamina;
     }
 
     public String getPlayerName()
@@ -62,6 +67,22 @@ public class Charachter {
         this.damage+=a;
     }
 
+    public int getFightstamina()
+    {
+        return this.fightstamina;
+    }
+
+    public void decFightStamina(int s)
+    {
+        this.fightstamina -= s;
+    }
+
+    public void resetStamina()
+    {
+        this.fightstamina = stamina;
+    }
+
+
     public void getHit(int d)
     {
         this.fighthealth -= d;
@@ -70,6 +91,7 @@ public class Charachter {
     public void rest()
     {
         this.fighthealth += 1;
+        this.fightstamina += 1;
     }
 
     public void resethealth()
