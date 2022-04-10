@@ -5,7 +5,6 @@ public class Charachter {
     private int fighthealth;
     private double money;
     private int damage;
-    private Manager main;
 
     public Charachter(String name)
     {
@@ -14,7 +13,7 @@ public class Charachter {
         this.fighthealth = this.health;
         this.money = 0;
         this.damage = 2;
-        this.main = null;
+
     }
 
 
@@ -37,6 +36,11 @@ public class Charachter {
         return this.health;
     }
 
+    public void addHealth(int a)
+    {
+        this.health+=a;
+    }
+
     public int getFighthealth()
     {
         return this.fighthealth;
@@ -53,6 +57,11 @@ public class Charachter {
         this.damage = d;
     }
 
+    public void addDamage(int a)
+    {
+        this.damage+=a;
+    }
+
     public void getHit(int d)
     {
         this.fighthealth -= d;
@@ -67,11 +76,6 @@ public class Charachter {
     {
         this.fighthealth = this.health;
 
-    }
-
-    public void newManager(Manager m)
-    {
-        this.main = m;
     }
 
     public void nextleauge()

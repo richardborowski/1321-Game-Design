@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c6763e8-b9be-4727-a2a9-981b8d4f9aad" name="Changes" comment="" />
+    <list default="true" id="3c6763e8-b9be-4727-a2a9-981b8d4f9aad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Bank.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Leauge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Charachter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Charachter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/1321-Game-Design/Charachter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1321-Game-Design/Charachter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/1321-Game-Design/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1321-Game-Design/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/1321-Game-Design/Manager.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,5 +66,16 @@
       <updated>1648735267579</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
