@@ -479,7 +479,7 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 			lev[l].set_streakClubWithdraw(acc, res);
 
 			acc[0].set_balance(lev, track, res);
-			System.out.println ("New Personal Balance: $" + acc[1].get_balance());
+			System.out.println ("New Personal Balance: $" + acc[0].get_balance());
 
 			acc[0].set_balance(lev, track, res);
 			System.out.println ("New Club Balance: $" + acc[1].get_balance());
