@@ -15,11 +15,11 @@ public class Main {
         Bank personal = new Bank("Personal", 600,.5);
         Bank club = new Bank("Club", 0,.5);
 
-        Charachter one = new Charachter("a", 10, 0, 2);
-        Charachter two = new Charachter("b", 11, 0, 2);
-        Charachter three = new Charachter("c", 12, 0, 2);
-        Charachter four = new Charachter("d", 13, 0, 2);
-        Charachter five = new Charachter("e", 15, 0, 3);
+        Charachter one = new Charachter("M. Tyson", 10, 0, 2);
+        Charachter two = new Charachter("J. Frazier", 11, 0, 2);
+        Charachter three = new Charachter("H. Armstrong", 12, 0, 2);
+        Charachter four = new Charachter("SR. Robinson", 13, 0, 2);
+        Charachter five = new Charachter("M. Ali", 15, 0, 3);
 
         Charachter[] leagueone = {one,two,three,four,five};
 
