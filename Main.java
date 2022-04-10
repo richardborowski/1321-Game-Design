@@ -27,6 +27,7 @@ public class Main {
     //menu choices
     Print menu = new Print('m', tracker);
     Print league = new Print('l', tracker);
+    Print shop = new Shop();
     Print help = new Print('h', tracker);
     Print[] option = { menu, league, help };
 
