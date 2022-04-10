@@ -74,9 +74,9 @@ public class Shop {
 
 
 
-    private static float get_balance()
+    private static float get_balance(float b)
     {
-        return 1000;
+        return b;
     }
 
     private int getItemBoost(int boost)
