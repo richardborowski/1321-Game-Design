@@ -57,8 +57,8 @@ public void set_balance(int b) {
 
 }
 
-public float get_balance() {
-	
+public float get_balance(float b) {
+	float balance;
 	return rnd(balance);
 
 }
