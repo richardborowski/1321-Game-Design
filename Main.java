@@ -73,7 +73,7 @@ public class Main {
     do {
     league.print(option, "intro", level, account, result, tracker);
         
-        new shop();
+        new Shop();
 
     //visit store
     //System.out.println("[Item Shop]");
