@@ -5,96 +5,104 @@ public class Shop {
     private static int itemPrice;
 
 
-    Shop() {
+     public static void shop(Bank personal, double inflation, Charachter main)
+    {
         Scanner scan= new Scanner(System.in);
         System.out.println("[Welcome to the Shop]\n" +
                 "Upgrade your equipment to perform better in the ring!");
-        System.out.println("Your current balance is " + get_balance()); //add player balance
-        System.out.println("Please chose a category \n 1- Gloves \n 2- Shorts \n 3- Shoes");
-        itemMenu= scan.nextShort();
+        System.out.println("Your current balance is $" + personal.getBalance());
+        System.out.println("Please chose a category \n1) Gloves \n2) Shorts \n3) Shoes \n4) Exit");
+        int itemMenu = scan.nextInt();
         switch(itemMenu){
-            case 1: gloves(); break;
-            case 2: shorts(); break;
-            case 3: shoes(); break;
-            default: System.out.println("Invalid Selection."); break;
+            case 1:
+                System.out.println("[Boxing Gloves]");
+                System.out.println("Which ones do you want to buy?");
+                System.out.println("1) Silver Pro Gloves $" + (200*personal.getInflation()) + " - upgrades damage by +2");
+                System.out.println("2) Diamond Champion Gloves $" + (650*personal.getInflation()) + " - upgrades damage by +7");
+                System.out.println("3) Exit");
+                int playerPurchase= scan.nextInt();
+                switch (playerPurchase){
+                    case 1:
+
+                        double itemPrice=(200*personal.getInflation());
+                        personal.subBalance(itemPrice);
+                        main.addDamage(2);
+                        break;
+
+                    case 2:
+
+                        itemPrice=(650*personal.getInflation());
+                        personal.subBalance(itemPrice);
+                        main.addDamage(5);
+                        break;
+                    default:
+                        break;
+                }
+                System.out.println("Your balance is now $" + personal.getBalance());
+                System.out.println();
+
+
+            break;
+            case 2:
+                System.out.println("[Boxing Shorts]");
+                System.out.println("Which ones do you want to buy?");
+                System.out.println("1) Rookie Shorts $" + (200*personal.getInflation()) + " - upgrades health by +2");
+                System.out.println("2) Champion Shorts $" + (750*personal.getInflation()) + " upgrades health by +9");
+                System.out.println("3) Exit");
+                playerPurchase= scan.nextInt();
+                switch (playerPurchase){
+                    case 1:
+                        double itemPrice=(200*personal.getInflation());
+                        personal.subBalance(itemPrice);
+                        main.addHealth(2);
+                        break;
+                    case 2:
+                        itemPrice=(750*personal.getInflation());
+                        personal.subBalance(itemPrice);
+                        main.addHealth(10);
+                        break;
+                    default:
+                        break;
+                }
+                System.out.println("Your balance is now $" + personal.getBalance());
+                System.out.println();
+
+            break;
+
+            case 3:
+                System.out.println("[Boxing Shoes]");
+                System.out.println("Which ones do you want to buy?");
+                System.out.println("1- Semi Pro Shoes $" + (200* personal.getInflation()) + " - upgrades damage by +1 and health by +1");
+                System.out.println("2- Grand Master Shoes $" + (850*personal.getInflation()) + " - upgrades damage by +2 and health by +8");
+                System.out.println("3) Exit");
+                playerPurchase= scan.nextInt();
+                switch (playerPurchase){
+                    case 1:
+                        double itemPrice=(200*personal.getInflation());
+                        personal.subBalance(itemPrice);
+                        main.addDamage(1);
+                        main.addHealth(1);
+                        break;
+                    case 2:
+                        itemPrice=(850*personal.getInflation());
+                        personal.subBalance(itemPrice);
+                        main.addDamage(2);
+                        main.addHealth(8);
+                        break;
+                    default:
+                        break;
+
+                }
+                System.out.println("Your balance is now $" + personal.getBalance());
+                System.out.println();
+
+                break;
+            case 4:
+                break;
+            default:
+                System.out.println("Invalid Selection.");
+            break;
         }
-
-    }
-
-    public static float shorts()
-    {
-        itemPrice = 0;
-        Scanner scan= new Scanner(System.in);
-        System.out.println("[Boxing Shorts]");
-        System.out.println("1- Basic Shorts $50 \n 2- Rookie Shorts $100 \n 3- Veteran Striped Shorts $300 \n 4- Legendary Shorts $550");
-        playerPurchase= scan.nextInt();
-        switch (playerPurchase){
-            case 1: itemPrice=50; break;
-            case 2: itemPrice=100; break;
-            case 3: itemPrice=300; break;
-            case 4: itemPrice=550; break;
-        }
-        float newBalance = get_balance() - itemPrice;
-        return newBalance;
-    }
-
-    public static float shoes()
-    {
-        itemPrice = 0;
-        Scanner scan= new Scanner(System.in);
-        System.out.println("[Boxing Shoes]");
-        System.out.println("1- Semi Pro Shoes $150 \n 2- Pro Shoes $250 \n 3- Champion Shoes $850 \n 4- Grand Master Shoes $1250");
-        playerPurchase= scan.nextInt();
-        switch (playerPurchase){
-            case 1: itemPrice=150; break;
-            case 2: itemPrice=250; break;
-            case 3: itemPrice=850; break;
-            case 4: itemPrice=1250; break;
-        }
-        float newBalance = get_balance() - itemPrice;
-        return newBalance;
-    }
-
-    public static float gloves()
-    {
-        itemPrice = 0;
-        Scanner scan= new Scanner(System.in);
-        System.out.println("[Boxing Gloves]");
-        System.out.println("1- Silver Pro Gloves $100 \n 2- Gold Pro Gloves $250 \n 3- Diamond Champion Gloves $650 \n 4- Platinum Master Gloves $1000");
-        playerPurchase= scan.nextInt();
-        switch (playerPurchase){
-            case 1: itemPrice=100; break;
-            case 2: itemPrice=250; break;
-            case 3: itemPrice=650; break;
-            case 4: itemPrice=1000; break;
-        }
-        float newBalance = get_balance() - itemPrice;
-        return newBalance;
-    }
-
-
-
-    private static float get_balance()
-    {
-        return 1000;
-    }
-
-    private int getItemBoost(int boost)
-    {
-        return boost * 15;
-    }
-
-    public int setPlayerItems(int playerPurchase)
-    {
-        return playerPurchase;
-    }
-
-    public float setCurrencySpent(int spent)
-    {
-        spent = itemPrice;
-        return spent;
-    }
-
 
 }
 
