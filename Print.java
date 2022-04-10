@@ -189,16 +189,9 @@ public void print(Print[] opt)
         
 					break;
 				}
-			}
+      }
 
-      //check stats
-			//else if (menuOption == 2)
-     // {
-       //add stats later if possible
-     // }
-        
-			//exit game
-			else if (menuOption == 2)
+		 if (menuOption == 2)
 			{
 				System.out.println ("[Exit Game]\n");
 				do {
@@ -255,55 +248,45 @@ public void print(Print[] opt, String subType)
 {
 	if (printType == 'h' && subType == "rules") {
 		System.out.println ("Help - Fight Club Rules:\n");
-		System.out.println ("Welcome to the World's Largest Underground Fight Club, in order to leave a millionaire as promised you will have to understand concepts of INFLATION and\n");
-		System.out.println ("COMPOUND INTEREST that will affect the money you make during your time here.\n");
-
-
-		System.out.println ("Here are the rules of the Fight Club:\n");
-		System.out.println ("Each fighter is assigned a Fight CLUB BANK ACCOUNT in addition to their PERSONAL BANK ACCOUNT. All of your upgrades and purchases will\n");
-		System.out.println ("come directly out of your personal account while the money you make in matches will be handled in your Club account.\n");
-
+		System.out.println ("Welcome to the World's Largest Underground Fight Club, in order to leave a millionaire as promised you will have to understand concepts of INFLATION and COMPOUND INTEREST that will \naffect the money you make during your time here.\n");
+promptEnterKey();
+    
+		System.out.println ("Each fighter is assigned a Fight CLUB BANK ACCOUNT in addition to their PERSONAL BANK \nACCOUNT. All of your upgrades and purchases will come directly out of your personal account \nwhile the money you make in matches will be handled in your Club account.\n");
+promptEnterKey();
 
 		System.out.println ("In the Fight Club, there are different LEAGUES that each have different requirements, costs, and challenges.\n");
-		System.out.println ("Each league will have 8 MATCHES and a certain number of WINS needed to move on to the next league. As you progress,\n");
-		System.out.println ("you will have less room for error as the amount of wins needed will get closer to 8.\n");
+		System.out.println ("Each league will have 8 MATCHES and a certain number of WINS needed to move on to the next \nleague. As you progress, you will have less room for error as the amount of wins needed will \nget closer to 8.\n");
+promptEnterKey();
 
+		System.out.println ("Each league has an ENTRY FEE, and a LEAGUE WIN PERCENT of your personal account that is \nawarded as a fraction of this percentage after each win.\n");
+promptEnterKey();
 
-		System.out.println ("Each league has an ENTRY FEE, and a LEAGUE WIN PERCENT of your personal account that is awarded as a fraction of this percentage after each win.\n");
+		System.out.println ("For example, if the league has a percent of 20% and 4 wins are needed to win the league, 5% \nof the amount that was in your personal account at\n");
+		System.out.println ("the start of the league (or the PRINCIPAL amount) will be deposited into your CLUB ACCOUNT \nafter each win. This is practically SIMPLE INTEREST.\n");
+		System.out.println ("However, during WIN STREAKS, this same percentage will be deposited, however the percentage \nwill be taken from your PERSONAL account PRINCIPAL \n");
+		System.out.println ("balance plus the amount you have earned in your fight CLUB ACCOUNT. Thus, creating a system \nof COMPOUND INTEREST, where you are earning interest on earned interest.\n");
+promptEnterKey();
 
+		System.out.println ("In order to keep the World's Largest Underground Fight Club up and running, the owners have \nestablished a tax per match during your time here. I mean the bills aren't going to pay \nthemselves...\n");
+		System.out.println ("Due to this, each league has a certain INFLATION RATE that is applied to your PERSONAL \naccount following each match, win or lose.\n");
+promptEnterKey();
 
-		System.out.println ("For example, if the league has a percent of 20% and 4 wins are needed to win the league, 5% of the amount that was in your personal account at\n");
-		System.out.println ("the start of the league (or the PRINCIPAL amount) will be deposited into your CLUB ACCOUNT after each win. This is practically SIMPLE INTEREST.\n");
-		System.out.println ("However, during WIN STREAKS, this same percentage will be deposited, however the percentage will be taken from your PERSONAL account PRINCIPAL \n");
-		System.out.println ("balance plus the amount you have earned in your fight CLUB ACCOUNT. Thus, creating a system of COMPOUND INTEREST, where you are earning interest\n");
-		System.out.println ("on earned interest.\n");
+		System.out.println ("Obviously you came here to make money so the inflation rate isn't going to be that large as \nlong as you keep winning and you should be able to overcome it with your matches.\n");
+		System.out.println ("However, after each loss in a league, the inflation rate will INCREASE by a certain percent \n(decided by each league) and during LOSING STREAKS, this inflation will be applied to both \nthe balance in your PERSONAL account as well as your CLUB account.\n");
+promptEnterKey();
 
+		System.out.println ("As mentioned, the money in your CLUB ACCOUNT is transferred to your PERSONAL ACCOUNT whether \nyou win or lose the league.\n");
+		System.out.println ("If you win the league, you will be promoted to the next league where you can visit the new \nleagues ITEM SHOP prior to paying the ENTRY FEE. The amount remaining after the entry fee is \npaid is the PRINCIPAL amount for interest.\n");
 
-		System.out.println ("In order to keep the World's Largest Underground Fight Club up and running, the owners have established a tax per match during your time here. I mean\n");
-		System.out.println ("the bills aren't going to pay themselves...\n");
-		System.out.println ("Due to this, each league has a certain INFLATION RATE that is applied to your PERSONAL account following each match, win or lose.\n");
+promptEnterKey();
 
+		System.out.println ("If you lose the league, you will have to try again and enter the league as if it is a new \none. You can visit the item shop again if there are any more items remaining that haven't \nbeen purchased.\n");
+promptEnterKey();
 
-		System.out.println ("Obviously you came here to make money so the inflation rate isn't going to be that large and you should be able to overcome it with your matches.\n");
-		System.out.println ("However, after each loss in a league, the inflation rate will INCREASE by a certain percent (decided by each league) and during LOSING STREAKS, this inflation will be applied to both\n");
-		System.out.println ("the balance in your PERSONAL account as well as your CLUB account.\n");
+		System.out.println ("If you end up losing more money to inflation than you gain from interest and can no longer \nafford the entry fee, your time at the Fight Club is over and you lose the game.\n");
+promptEnterKey();
 
-
-		System.out.println ("As mentioned, the money in your CLUB ACCOUNT is transferred to your PERSONAL ACCOUNT whether you win or lose the league.\n");
-		System.out.println ("If you win the league, you will be promoted to the next league where you can visit the new leagues ITEM SHOP and STAFF HIRINGS\n");
-		System.out.println ("prior to paying the ENTRY FEE. The amount remaining after the entry fee is paid is the PRINCIPAL amount for interest.\n");
-
-
-		System.out.println ("If you lose the league, you will have to try again and enter the league as if it is a new one. You can visit the item shop and staff \n");
-		System.out.println ("hirings again if there are any more remaining that haven't yet been purchased.\n");
-
-
-		System.out.println ("If you end up losing more money to inflation than you gain from interest and can no longer afford the entry fee, your time at the\n");
-		System.out.println ("Fight Club is over and you lose the game.\n");
-
-
-		System.out.println ("Note that enemies will be getting stronger and items, staff, and entry fees are increasing as you progress through the leagues, so you\n");
-		System.out.println ("should aim to leave each league with as much money as you possibly can.\n");
+		System.out.println ("*Note that enemies will be getting stronger and item prices and entry fees are increasing as \nyou progress through the leagues, so you should aim to leave each league with as much money \nas you possibly can.\n");
 		System.out.println ("Good luck!\n");
 
 		opt[0].enter(opt);
@@ -537,4 +520,12 @@ public void print(Print[] opt, String subType, League[] lev, Bank[] acc, boolean
 		}
 	}
 }
+
+public void promptEnterKey(){
+   System.out.println("\nPress \"ENTER\" to continue...");
+   Scanner scanner = new Scanner(System.in);
+   scanner.nextLine();
+  System.out.println();
+}
+  
 }

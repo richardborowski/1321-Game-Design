@@ -7,13 +7,13 @@ public class Main {
 
   //opponenets array
         Charachter one = new Charachter("M. Tyson", 10, 0, 2);
-        Charachter two = new Charachter("J. Frazier", 11, 0, 2);
-        Charachter three = new Charachter("H. Armstrong", 12, 0, 2);
-        Charachter four = new Charachter("SR. Robinson", 13, 0, 2);
-        Charachter five = new Charachter("M. Ali", 15, 0, 3);
-        Charachter six = new Charachter("M. 2", 15, 0, 3);
-        Charachter seven = new Charachter("M. 3", 15, 0, 3);
-        Charachter eight = new Charachter("M. 4", 15, 0, 3);
+        Charachter two = new Charachter("F. Mayweather", 11, 0, 2);
+        Charachter three = new Charachter("J. Frazier", 12, 0, 2);
+        Charachter four = new Charachter("G. Foreman", 13, 0, 2);
+        Charachter five = new Charachter("R. Marciano", 15, 0, 3);
+        Charachter six = new Charachter("H. Armstrong", 15, 0, 3);
+        Charachter seven = new Charachter("SR. Robinson", 15, 0, 3);
+        Charachter eight = new Charachter("M. Ali", 15, 0, 3);
 
         Charachter[] leagueone = {one,two,three,four,five,six,seven,eight};
 
@@ -61,7 +61,8 @@ public class Main {
         String name = input.nextLine();
         Charachter main = new Charachter(name);
       
-        System.out.println("Welcome " + main.getPlayerName()+ "! Here are the rules to the fight club:\n");
+        System.out.println("Welcome " + main.getPlayerName()+ "! Here are the rules to the fight club:");
+      	System.out.println ("-------------------------------------------------------------------------------------------\n");
         boolean c = false;
       
       //initially printing out rules to user
