@@ -27,7 +27,6 @@ public class Main {
     //menu choices
     Print menu = new Print('m', tracker);
     Print league = new Print('l', tracker);
-    Print shop = new Shop();
     Print help = new Print('h', tracker);
     Print[] option = { menu, league, help };
 
@@ -73,6 +72,8 @@ public class Main {
     //loop for running leagues
     do {
     league.print(option, "intro", level, account, result, tracker);
+        
+        new shop();
 
     //visit store
     //System.out.println("[Item Shop]");
@@ -410,7 +411,7 @@ public class Main {
             } while (end == false);
       }
       
-  /*  public static void shop(Bank personal, double inflation, Charachter main)
+  /* public static void shop(Bank personal, double inflation, Charachter main)
     {
         Scanner scan= new Scanner(System.in);
         System.out.println("[Welcome to the Shop]\n" +
