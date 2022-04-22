@@ -416,24 +416,24 @@ public class Main {
                 "Upgrade your equipment to perform better in the ring!");
         System.out.println("Your current balance is $" + acc[0].get_balance());
         System.out.println("Please chose a category \n1) Gloves \n2) Shorts \n3) Shoes \n4) Exit");
-        int itemMenu = scan.nextInt();
+        String itemMenu = scan.next();
         switch(itemMenu){
-            case 1:
+            case "1":
                 System.out.println("[Boxing Gloves]");
                 System.out.println("Which ones do you want to buy?");
                 System.out.println("1) Silver Pro Gloves $" + (20*(track[2]+1)) + " - upgrades damage by +2");
                 System.out.println("2) Diamond Champion Gloves $" + (65*(track[2]+1)) + " - upgrades damage by +7");
                 System.out.println("3) Exit");
-                int playerPurchase= scan.nextInt();
+                String playerPurchase= scan.next();
                 switch (playerPurchase){
-                    case 1:
+                    case "1":
 
                         int itemPrice=(20*(track[2]+1));
                         acc[0].set_balance('w', itemPrice);
                         main.addDamage(2);
                         break;
 
-                    case 2:
+                    case "2":
 
                         itemPrice=(65*(track[2]+1));
                         acc[0].set_balance('w', itemPrice);
@@ -447,20 +447,20 @@ public class Main {
 
 
             break;
-            case 2:
+            case "2":
                 System.out.println("[Boxing Shorts]");
                 System.out.println("Which ones do you want to buy?");
                 System.out.println("1) Rookie Shorts $" + (20*(track[2]+1)) + " - upgrades health by +2");
                 System.out.println("2) Champion Shorts $" + (75*(track[2]+1)) + " upgrades health by +9");
                 System.out.println("3) Exit");
-                playerPurchase= scan.nextInt();
+                playerPurchase= scan.next();
                 switch (playerPurchase){
-                    case 1:
+                    case "1":
                         int itemPrice=(20*(track[2]+1));
                         acc[0].set_balance('w', itemPrice);
                         main.addHealth(2);
                         break;
-                    case 2:
+                    case "2":
                         itemPrice=(75*(track[2]+1));
                         acc[0].set_balance('w', itemPrice);
                         main.addHealth(10);
@@ -473,21 +473,21 @@ public class Main {
 
             break;
 
-            case 3:
+            case "3":
                 System.out.println("[Boxing Shoes]");
                 System.out.println("Which ones do you want to buy?");
                 System.out.println("1- Semi Pro Shoes $" + (20*(track[2]+1)) + " - upgrades damage by +1 and health by +1");
                 System.out.println("2- Grand Master Shoes $" + (85*(track[2]+1)) + " - upgrades damage by +2 and health by +8");
                 System.out.println("3) Exit");
-                playerPurchase= scan.nextInt();
+                playerPurchase= scan.next();
                 switch (playerPurchase){
-                    case 1:
+                    case "1":
                         int itemPrice= (20*(track[2]+1));
                         acc[0].set_balance('w', itemPrice);
                         main.addDamage(1);
                         main.addHealth(1);
                         break;
-                    case 2:
+                    case "2":
                         itemPrice=(85*(track[2]+1));
                         acc[0].set_balance('w', itemPrice);
                         main.addDamage(2);
@@ -501,7 +501,7 @@ public class Main {
                 System.out.println();
 
                 break;
-            case 4:
+            case "4":
                 break;
             default:
                 System.out.println("Invalid Selection.");
