@@ -46,12 +46,14 @@ public void print(Print[] opt, Charachter[] user)
       System.out.print( "2) Check Stats\n" );
 			System.out.print( "3) Exit Game\n" );
 			System.out.print( "4) Return to Game\n\n" );
-
+		String menuChoice = "";
 			do {
-				System.out.print( "Choose an option: " );
-				menuOption = sc.nextInt();
-				System.out.println();
-			} while (menuOption != 1 && menuOption != 2 && menuOption != 3 && menuOption != 4);
+			  System.out.print( "Choose an option: " );
+			menuChoice = sc.nextLine();
+			  System.out.println();
+			  } while (!"1".equals(menuChoice) && !"2".equals(menuChoice) && !"3".equals(menuChoice) && !"4".equals(menuChoice));
+
+		      menuOption = Integer.parseInt(menuChoice);
 
 			//help menu
 			if (menuOption == 1)
