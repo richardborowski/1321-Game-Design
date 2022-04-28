@@ -415,7 +415,14 @@ public class Main {
         System.out.println("[Welcome to the Shop]\n" +
                 "Upgrade your equipment to perform better in the ring!");
         System.out.println("Your current balance is $" + acc[0].get_balance());
-        System.out.println("Please chose a category \n1) Gloves \n2) Shorts \n3) Shoes \n4) Exit");
+       
+        String choice = "";
+        do {
+          System.out.println("Please chose a category \n1) Gloves \n2) Shorts \n3) Shoes \n4) Exit");
+        choice = scan.nextLine();
+          } while (!"1".equals(choice) && !"2".equals(choice) && !"3".equals(choice) && !"4".equals(choice));
+
+      int itemMenu = Integer.parseInt(choice);
         int itemMenu = scan.nextInt();
         switch(itemMenu){
             case 1:
