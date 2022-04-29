@@ -142,7 +142,7 @@ public class Main {
                 "  ╚═╝ ╚═╝ ╚═╝    ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝        ╚═════╝╚══════╝ ╚═════╝ ╚═════╝     ╚═╝ ╚═╝ ╚═╝  \n" +
                 "                                                                                                            ");
         System.out.println("Welcome to the Fight Club!");
-        System.out.print("Press any key to start!");
+        System.out.print("Press ENTER to start!");
         input.nextLine();
     }
 
