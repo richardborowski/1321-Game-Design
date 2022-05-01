@@ -418,7 +418,7 @@ public class Main {
        
         String choice = "";
         do {
-          System.out.println("Please chose a category \n1) Gloves \n2) Shorts \n3) Shoes \n4) Exit");
+          System.out.println("Please choose a category \n1) Gloves \n2) Shorts \n3) Shoes \n4) Exit");
         choice = scan.nextLine();
           } while (!"1".equals(choice) && !"2".equals(choice) && !"3".equals(choice) && !"4".equals(choice));
 
