@@ -93,24 +93,32 @@ public void print(Print[] opt, Charachter[] user)
 
     //exit game
 		 if (menuOption == 3)
-			{
-				System.out.println ("[Exit Game]\n");
-				do {
-					System.out.println ("Are you sure you want to exit? (Y/N)\n");
-					exitOption = sc.next().charAt(0);
-				} while (exitOption != 'Y' && exitOption != 'N');
-            
-				switch (exitOption) {
-				case 'Y':
-					System.out.println ("Goodbye!\n");
-					System.exit(0);
-				case 'N':
-					break;
-				}
-				System.out.println ("-------------------------------------------------------------------------------------------\n\n");
+	{
+		System.out.println ("[Exit Game]\n");
+		do {
+		
+		System.out.println ("Are you sure you want to exit? (Y/N)\n");
+			exitOption = sc.next().charAt(0);
+		} while (exitOption != 'y' && exitOption != 'Y' && exitOption != 'n' && exitOption != 'N');
+    
+		switch (exitOption) {
+		case 'Y':
+			System.out.println ("Goodbye!\n");
+			System.exit(0);
+		
+		case 'y':
+			System.out.println ("Goodbye!\n");
+			System.exit(0);
+			
+		case 'N':
+			break;
+			
+		case 'n':
+			break;
+		}
+		System.out.println ("-------------------------------------------------------------------------------------------\n\n");
 
-			}
-  
+	}
 			//return to game
 			else if (menuOption == 4) {	
         opt[0].enter(opt, user);
