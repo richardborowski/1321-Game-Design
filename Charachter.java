@@ -50,6 +50,12 @@ public class Charachter {
     {
         return this.fighthealth;
     }
+    
+    public void setFighthealth(int fighterHP){
+
+        this.fighthealth = fighterHP;
+
+    }
 
     public int getPlayerDamage()
     {
