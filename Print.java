@@ -481,18 +481,33 @@ public void promptEnterKey(){
             }
             else if(pc == 1 && oc == 2)
             {
+		if (tut.getFighthealth() == 0){
+			tut.setFighthealth(0);
+
+			}    
+		    
                 System.out.println("Opponent dodged your attack and countered!");
                 tut.getHit(tute.getPlayerDamage());
                 System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
             }
             else if(pc == 1 && oc == 3)
             {
+		if (tute.getFighthealth() == 0){
+			tute.setFighthealth(0);
+
+			}    
+		    
                 System.out.println("You Hit while opponent was resting!");
                 tute.getHit(tut.getPlayerDamage());
                 System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
             }
             else if(pc == 2 && oc == 1)
             {
+		if (tute.getFighthealth() == 0){
+			tute.setFighthealth(0);
+
+		}    
+		    
                 System.out.println("You dodged your opponents attack and countered!");
                 tute.getHit(tut.getPlayerDamage());
                 System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
@@ -510,6 +525,11 @@ public void promptEnterKey(){
             }
             else if(pc == 3 && oc == 1)
             {
+		if (tut.getFighthealth() == 0){
+			tut.setFighthealth(0);
+
+			}    
+		    
                 System.out.println("Opponent Hit while you were resting!");
                 tut.getHit(tute.getPlayerDamage());
                 System.out.println("Player Health: " + tut.getFighthealth() + "            Opponents Health: " + tute.getFighthealth());
