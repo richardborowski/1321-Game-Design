@@ -142,7 +142,7 @@ public class Main {
                 "  ╚═╝ ╚═╝ ╚═╝    ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝        ╚═════╝╚══════╝ ╚═════╝ ╚═════╝     ╚═╝ ╚═╝ ╚═╝  \n" +
                 "                                                                                                            ");
         System.out.println("Welcome to the Fight Club!");
-        System.out.print("Press any key to start!");
+        System.out.print("Press ENTER to start!");
         input.nextLine();
     }
 
@@ -423,7 +423,7 @@ public class Main {
           } while (!"1".equals(choice) && !"2".equals(choice) && !"3".equals(choice) && !"4".equals(choice));
 
       int itemMenu = Integer.parseInt(choice);
-        int itemMenu = scan.nextInt();
+         itemMenu = scan.nextInt();
         switch(itemMenu){
             case 1:
                 System.out.println("[Boxing Gloves]");
