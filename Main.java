@@ -407,7 +407,8 @@ public class Main {
               
             } while (end == false);
       }
- //shop method
+ 
+    //shop method
    public static void shop(Bank[] acc, int[] track, Charachter main)
     {    int exit=0;
         Scanner scan= new Scanner(System.in);
